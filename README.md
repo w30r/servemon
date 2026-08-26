@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Servemon
 
-## Getting Started
+A searchable archive of Friday sermon (khutbah) PDFs from religious authorities across Malaysia. Built for Muslims who want to understand, study, and revisit the weekly khutbahs delivered at their local mosques.
 
-First, run the development server:
+Currently covering:
+- **Selangor** — JAIS (Jabatan Agama Islam Selangor)
+- **Kuala Lumpur, Putrajaya, Labuan** — JAKIM (Jabatan Kemajuan Islam Malaysia)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+More states coming soon.
+
+## Tech Stack
+
+- **Next.js 16** (App Router) — `output: "standalone"`
+- **Tailwind CSS 4** — glassmorphism theme
+- **better-sqlite3** — local SQLite storage (sermons metadata)
+- **cheerio** — HTML scraping
+- **Docker** — multi-stage build for Coolify/arm64 & amd64 deployment
+
+## Features
+
+- Browse sermons by state with per-state counts and live search
+- Cards/list view toggle (persisted in localStorage)
+- Per-sermon PDF viewer with Jawi / Rumi / English tabs + zoom controls
+- Download individual PDFs (Jawi, Rumi, English)
+- WhatsApp share + copy-link on sermon detail pages
+- 4-language UI: Bahasa Melayu, English, 中文, தமிழ் (cookie-based toggle)
+- OpenGraph metadata + favicon
+- Automatic scraping via cron trigger
+
+## Architecture
+
+```
+app/
+  page.tsx              Home — hero + latest sermons
+  sermons/page.tsx      Browse — state filter + search + list/cards
+  sermons/[id]/page.tsx Detail — PDF viewer + download + related
+  about/page.tsx        About page (4 languages)
+  api/cron/run/         POST cron trigger (runs both scrapers)
+  api/pdf/[...path]/    PDF streaming from local disk
+components/
+  header, footer, lang-toggle, sermon-card/list/viewer,
+  share-button, back-to-top, skeleton
+lib/
+  db.ts                 SQLite schema + queries
+  storage.ts            PDF path/URL resolution (traversal-safe)
+  scrapers/             jais.ts, jakim.ts, shared.ts, http.ts
+  i18n.ts / i18n-server.ts  UI translations
+scripts/scrape.ts       Manual scrape runner
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Data flow:** Scrapers fetch listings from official sites → parse sermon metadata + download PDFs to local disk (`DATA_DIR`) → upsert into SQLite. PDFs are served from disk via `/api/pdf/[...path]`, not external URLs (government sites can be unreliable during Friday prayers).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Setup
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev
+```
 
-## Learn More
+Open http://localhost:3000.
 
-To learn more about Next.js, take a look at the following resources:
+### Environment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Variable | Default | Description |
+|---|---|---|
+| `DATA_DIR` | `~/.servemon/data` | Where PDFs + SQLite DB live |
+| `CRON_SECRET` | — | Required for `POST /api/cron/run` (matches `x-cron-secret` header) |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Scraping
 
-## Deploy on Vercel
+Run both scrapers manually:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run scrape
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Output JSON: `{ jais: {added, updated, skipped, errors}, jakim: {...} }`.
+
+### Cron (production)
+
+The scrape is triggered externally (not via a scheduler inside the container). Set up a crontab on the host:
+
+```
+0 */6 * * * curl -fsS -X POST -H "x-cron-secret: <SECRET>" https://<your-domain>/api/cron/run >> ~/servemon-cron.log 2>&1
+```
+
+`CRON_SECRET` must match the value set on the deployed app.
+
+## Docker
+
+Multi-stage build — deps stage installs `python3 make g++` (better-sqlite3 needs node-gyp source compile), runner stage adds `libstdc++6`.
+
+```bash
+docker build --platform linux/amd64 -t ghcr.io/w30r/servemon:latest .
+docker push ghcr.io/w30r/servemon:latest
+```
+
+Production runs with a persistent volume mounted at `DATA_DIR=/data`.
+
+## Acknowledgements
+
+All sermon texts remain the property of their respective state religious councils and departments. Servemon simply makes them easier to find.
