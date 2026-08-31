@@ -5,6 +5,8 @@ A searchable archive of Friday sermon (khutbah) PDFs from religious authorities 
 Currently covering:
 - **Selangor** — JAIS (Jabatan Agama Islam Selangor)
 - **Kuala Lumpur, Putrajaya, Labuan** — JAKIM (Jabatan Kemajuan Islam Malaysia)
+- **Johor** — JAINJ (Jabatan Agama Islam Negeri Johor, Jawi only)
+- **Kedah** — JHEAIK (Jabatan Hal Ehwal Agama Islam Negeri Kedah, Jawi + Rumi)
 
 More states coming soon.
 
@@ -35,15 +37,15 @@ app/
   sermons/page.tsx      Browse — state filter + search + list/cards
   sermons/[id]/page.tsx Detail — PDF viewer + download + related
   about/page.tsx        About page (4 languages)
-  api/cron/run/         POST cron trigger (runs both scrapers)
+  api/cron/run/         POST cron trigger (runs all scrapers)
   api/pdf/[...path]/    PDF streaming from local disk
 components/
   header, footer, lang-toggle, sermon-card/list/viewer,
   share-button, back-to-top, skeleton
-lib/
+  lib/
   db.ts                 SQLite schema + queries
   storage.ts            PDF path/URL resolution (traversal-safe)
-  scrapers/             jais.ts, jakim.ts, shared.ts, http.ts
+  scrapers/             jais.ts, jakim.ts, johor.ts, kedah.ts, shared.ts, http.ts
   i18n.ts / i18n-server.ts  UI translations
 scripts/scrape.ts       Manual scrape runner
 ```
@@ -74,7 +76,7 @@ Run both scrapers manually:
 npm run scrape
 ```
 
-Output JSON: `{ jais: {added, updated, skipped, errors}, jakim: {...} }`.
+Output JSON: `{ jais: {added, updated, skipped, errors}, jakim: {...}, johor: {...}, kedah: {...} }`.
 
 ### Cron (production)
 

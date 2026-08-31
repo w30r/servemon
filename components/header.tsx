@@ -5,30 +5,33 @@ import { t, type Lang } from "@/lib/i18n";
 
 export default function Header({ lang }: { lang: Lang }) {
   return (
-    <header className="sticky top-0 z-50 px-4 pt-4">
-      <div className="glass mx-auto flex h-14 max-w-5xl items-center justify-between gap-3 rounded-full px-5 sm:px-6">
-        <Link href="/" className="flex items-center gap-2">
+    <header className="sticky top-0 z-50 px-3 pt-3 sm:px-4 sm:pt-4">
+      <div className="glass mx-auto flex h-12 max-w-5xl items-center justify-between rounded-full px-3 sm:h-14 sm:gap-3 sm:px-6">
+        <Link
+          href="/"
+          className="flex shrink-0 items-center gap-2"
+        >
           <Image
             src="/logo2.png"
             alt="Servemon"
-            width={28}
-            height={28}
-            className="rounded-full"
+            width={24}
+            height={24}
+            className="rounded-full sm:h-7 sm:w-7"
           />
           <span className="hidden text-lg font-bold uppercase tracking-tight text-white sm:inline">
             Servemon
           </span>
         </Link>
-        <nav className="flex items-center gap-1.5 text-sm font-medium text-mint sm:gap-2">
+        <nav className="flex shrink-0 items-center gap-0.5 text-xs font-medium text-mint sm:gap-2 sm:text-sm">
           <Link
             href="/sermons"
-            className="rounded-full px-3 py-2 transition-colors hover:bg-white/10 hover:text-white sm:px-4"
+            className="rounded-full px-2.5 py-1.5 transition-colors hover:bg-white/10 hover:text-white sm:px-4 sm:py-2"
           >
             {t(lang, "nav.browse")}
           </Link>
           <Link
             href="/about"
-            className="rounded-full px-3 py-2 transition-colors hover:bg-white/10 hover:text-white sm:px-4"
+            className="rounded-full px-2.5 py-1.5 transition-colors hover:bg-white/10 hover:text-white sm:px-4 sm:py-2"
           >
             {t(lang, "nav.about")}
           </Link>

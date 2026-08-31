@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { runJaisScraper } from "@/lib/scrapers/jais";
 import { runJakimScraper } from "@/lib/scrapers/jakim";
+import { runJohorScraper } from "@/lib/scrapers/johor";
+import { runKedahScraper } from "@/lib/scrapers/kedah";
 
 const CRON_SECRET = process.env.CRON_SECRET;
 
@@ -12,8 +14,13 @@ export const POST = async (req: Request) => {
   }
 
   try {
-    const [jais, jakim] = await Promise.all([runJaisScraper(), runJakimScraper()]);
-    return NextResponse.json({ jais, jakim });
+    const [jais, jakim, johor, kedah] = await Promise.all([
+      runJaisScraper(),
+      runJakimScraper(),
+      runJohorScraper(),
+      runKedahScraper(),
+    ]);
+    return NextResponse.json({ jais, jakim, johor, kedah });
   } catch (e) {
     console.error("Cron job error:", e);
     return NextResponse.json(
