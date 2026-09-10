@@ -3,6 +3,7 @@ import { persistSermon, type PdfSet } from "./shared";
 
 const JAIS_LISTING = "https://e-khutbah.jais.gov.my/senarai-khutbah-jumaat/";
 const BASE_URL = "https://e-khutbah.jais.gov.my";
+const UPLOADS = "https://e-khutbah.jais.gov.my/wp-content/uploads";
 const STATE = "Selangor";
 
 const SCRAPE_MONTHS = Math.max(1, Number(process.env.SCRAPE_MONTHS || 3));
@@ -12,7 +13,6 @@ CUTOFF.setMonth(CUTOFF.getMonth() - SCRAPE_MONTHS);
 CUTOFF.setHours(0, 0, 0, 0);
 
 function parseDate(raw: string): string | null {
-  // Accept DD/MM/YYYY and DD.MM.YYYY; normalize to DD/MM/YYYY
   const m = raw.trim().match(/^(\d{1,2})[./](\d{1,2})[./](\d{4})$/);
   if (!m) return null;
   const d = m[1].padStart(2, "0");
@@ -26,28 +26,27 @@ function isWithinWindow(dateStr: string): boolean {
   return d >= CUTOFF;
 }
 
-type Lang = "jawi" | "rumi" | "english" | "manual" | "slide" | "unknown";
+function constructPdfUrls(
+  date: string,
+  title: string
+): PdfSet {
+  const [day, month, year] = date.split("/");
+  const dotDate = `${day}.${month}.${year}`;
+  const mm = month;
 
-function classify(url: string): Lang {
-  const name = decodeURIComponent(url.split("/").pop() || "").toLowerCase();
-  if (name.startsWith("s-") || name.includes("slide")) return "slide";
-  if (name.includes("manual")) return "manual";
-  if (name.includes("jawi")) return "jawi";
-  if (name.includes("rumi")) return "rumi";
-  if (name.includes("english") || name.includes("inggeris")) return "english";
-  return "unknown";
-}
+  // JAWI/RUMI: ALL-CAPS with hyphens replacing spaces
+  const upperTitle = title.toUpperCase().replace(/\s+/g, "-");
+  // English: Title-Case with hyphens
+  const titleCase = title
+    .split(/[\s:]+/)
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
+    .join("-");
 
-function extractPdfLinks(html: string): string[] {
-  const $ = cheerio.load(html);
-  const links: string[] = [];
-  $("a[href]").each((_i, a) => {
-    const href = $(a).attr("href") || "";
-    if (!href.toLowerCase().endsWith(".pdf")) return;
-    const abs = new URL(href, BASE_URL).href;
-    if (!links.includes(abs)) links.push(abs);
-  });
-  return links;
+  return {
+    jawi: `${UPLOADS}/${year}/${mm}/${dotDate}-JAWI-${upperTitle}.pdf`,
+    rumi: `${UPLOADS}/${year}/${mm}/${dotDate}-RUMI-${upperTitle}.pdf`,
+    english: `${UPLOADS}/${year}/${mm}/${titleCase}-${dotDate}-english.pdf`,
+  };
 }
 
 export async function runJaisScraper(): Promise<{
@@ -59,7 +58,7 @@ export async function runJaisScraper(): Promise<{
   const errors: string[] = [];
   let added = 0;
   let updated = 0;
-  let skipped = 0;
+  const skipped = 0;
 
   const res = await fetch(JAIS_LISTING);
   if (!res.ok) {
@@ -84,7 +83,6 @@ export async function runJaisScraper(): Promise<{
     const title = a.text().trim();
     if (!href || !title) return;
 
-    // Dedupe duplicate rows (same sermon listed multiple times)
     if (seen.has(href)) return;
     seen.add(href);
 
@@ -92,37 +90,7 @@ export async function runJaisScraper(): Promise<{
   });
 
   for (const row of rows) {
-    let detailHtml: string;
-    try {
-      const dr = await fetch(row.detailUrl);
-      if (!dr.ok) {
-        skipped++;
-        errors.push(`Detail fetch ${dr.status}: ${row.detailUrl}`);
-        continue;
-      }
-      detailHtml = await dr.text();
-    } catch (e) {
-      skipped++;
-      errors.push(`Detail fetch error: ${row.detailUrl} — ${(e as Error).message}`);
-      continue;
-    }
-
-    const pdfs: PdfSet = { jawi: null, rumi: null, english: null };
-    const order: ("jawi" | "rumi" | "english")[] = ["jawi", "rumi", "english"];
-
-    for (const url of extractPdfLinks(detailHtml)) {
-      const lang = classify(url);
-      if (lang === "jawi" || lang === "rumi" || lang === "english") {
-        if (!pdfs[lang]) pdfs[lang] = url;
-      } else if (lang === "unknown") {
-        for (const slot of order) {
-          if (!pdfs[slot]) {
-            pdfs[slot] = url;
-            break;
-          }
-        }
-      }
-    }
+    const pdfs = constructPdfUrls(row.date, row.title);
 
     const id = `${STATE.toLowerCase()}-${row.date.replace(/\//g, "-")}`;
     const { status, errors: persistErrors } = await persistSermon({

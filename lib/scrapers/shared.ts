@@ -1,4 +1,5 @@
 import { downloadPdf, pdfPath, pdfUrl } from "../storage";
+import { existsSync } from "fs";
 import { db } from "../db";
 
 export type PdfSet = {
@@ -59,6 +60,14 @@ export async function persistSermon({
       language,
       existing.id
     );
+    for (const lang of ["jawi", "rumi", "english"] as const) {
+      const url = pdfs[lang];
+      if (!url) continue;
+      const dest = pdfPath(state, date, lang);
+      if (existsSync(dest)) continue;
+      const ok = await downloadPdf(url, dest);
+      if (!ok) errors.push(`${lang} PDF download failed: ${title}`);
+    }
     return { status: "updated", errors };
   }
 
