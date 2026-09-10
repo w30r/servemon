@@ -3,7 +3,7 @@ import { persistSermon, type PdfSet } from "./shared";
 
 const JAIS_LISTING = "https://e-khutbah.jais.gov.my/senarai-khutbah-jumaat/";
 const BASE_URL = "https://e-khutbah.jais.gov.my";
-const UPLOADS = "https://e-khutbah.jais.gov.my/wp-content/uploads";
+const WP_MEDIA = "https://e-khutbah.jais.gov.my/wp-json/wp/v2/media";
 const STATE = "Selangor";
 
 const SCRAPE_MONTHS = Math.max(1, Number(process.env.SCRAPE_MONTHS || 3));
@@ -26,27 +26,69 @@ function isWithinWindow(dateStr: string): boolean {
   return d >= CUTOFF;
 }
 
-function constructPdfUrls(
-  date: string,
-  title: string
-): PdfSet {
-  const [day, month, year] = date.split("/");
-  const dotDate = `${day}.${month}.${year}`;
-  const mm = month;
+type Media = { date: string; source_url: string };
 
-  // JAWI/RUMI: ALL-CAPS with hyphens replacing spaces
-  const upperTitle = title.toUpperCase().replace(/\s+/g, "-");
-  // English: Title-Case with hyphens
-  const titleCase = title
-    .split(/[\s:]+/)
-    .map((w) => w.charAt(0).toUpperCase() + w.slice(1).toLowerCase())
-    .join("-");
+function tokens(s: string): Set<string> {
+  return new Set(
+    s
+      .toUpperCase()
+      .replace(/[^A-Z0-9]+/g, " ")
+      .split(" ")
+      .filter((w) => w.length > 2)
+  );
+}
 
-  return {
-    jawi: `${UPLOADS}/${year}/${mm}/${dotDate}-JAWI-${upperTitle}.pdf`,
-    rumi: `${UPLOADS}/${year}/${mm}/${dotDate}-RUMI-${upperTitle}.pdf`,
-    english: `${UPLOADS}/${year}/${mm}/${titleCase}-${dotDate}-english.pdf`,
-  };
+function classifyName(name: string): "jawi" | "rumi" | "english" | null {
+  const n = name.toLowerCase();
+  if (!n.endsWith(".pdf")) return null;
+  if (n.startsWith("manual")) return null; // manual, not khutbah text
+  if (n.includes("jawi")) return "jawi";
+  if (n.includes("rumi")) return "rumi";
+  if (n.includes("english") || n.includes("inggeris")) return "english";
+  return null;
+}
+
+function isSlide(name: string): boolean {
+  return name.toLowerCase().startsWith("s-");
+}
+
+function matchesTitle(name: string, title: string): boolean {
+  const nameTokens = tokens(name);
+  let overlap = 0;
+  for (const t of tokens(title)) if (nameTokens.has(t)) overlap++;
+  return overlap >= 2;
+}
+
+async function fetchMediaWindow(date: string): Promise<Media[]> {
+  const [day, month, year] = date.split("/").map(Number);
+  const iso = (d: Date) => d.toISOString().slice(0, 19);
+  const after = new Date(year, month - 1, day - 3);
+  const before = new Date(year, month - 1, day + 2);
+  const url = `${WP_MEDIA}?after=${iso(after)}&before=${iso(before)}&per_page=100&orderby=date&order=desc`;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return [];
+    return (await res.json()) as Media[];
+  } catch {
+    return [];
+  }
+}
+
+async function findPdfs(date: string, title: string): Promise<PdfSet> {
+  const media = await fetchMediaWindow(date);
+  const pdfs: PdfSet = { jawi: null, rumi: null, english: null };
+  for (const m of media) {
+    const name = decodeURIComponent(m.source_url.split("/").pop() || "");
+    const lang = classifyName(name);
+    if (!lang) continue;
+    if (!matchesTitle(name, title)) continue;
+    const current = pdfs[lang];
+    // Prefer the plain khutbah file over the "S-" (slide) variant when both exist.
+    if (!current || (isSlide(current) && !isSlide(name))) {
+      pdfs[lang] = m.source_url;
+    }
+  }
+  return pdfs;
 }
 
 export async function runJaisScraper(): Promise<{
@@ -90,7 +132,7 @@ export async function runJaisScraper(): Promise<{
   });
 
   for (const row of rows) {
-    const pdfs = constructPdfUrls(row.date, row.title);
+    const pdfs = await findPdfs(row.date, row.title);
 
     const id = `${STATE.toLowerCase()}-${row.date.replace(/\//g, "-")}`;
     const { status, errors: persistErrors } = await persistSermon({
