@@ -110,6 +110,8 @@ export default async function SermonsPage({
           cards: t(lang, "list.cards"),
           list: t(lang, "list.list"),
           empty: t(lang, "list.empty"),
+          upcoming: t(lang, "list.upcoming"),
+          thisWeek: t(lang, "list.thisWeek"),
           summary: [
             t(lang, "list.summary", {
               n: String(filtered.length),

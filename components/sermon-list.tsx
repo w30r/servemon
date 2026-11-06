@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import SermonCard from "./sermon-card";
-import { formatDate } from "@/lib/format";
+import { formatDate, isCurrentWeek, isUpcoming } from "@/lib/format";
 import type { DbSermon } from "@/lib/db";
 
 type View = "cards" | "list";
@@ -13,6 +13,8 @@ type Strings = {
   list: string;
   empty: string;
   summary: string;
+  upcoming: string;
+  thisWeek: string;
 };
 
 export default function SermonList({
@@ -65,7 +67,12 @@ export default function SermonList({
       ) : view === "cards" ? (
         <div className="mt-4 grid gap-4 pb-8 sm:grid-cols-2 lg:grid-cols-3">
           {sermons.map((s) => (
-            <SermonCard key={s.id} sermon={s} />
+            <SermonCard
+              key={s.id}
+              sermon={s}
+              upcomingLabel={strings.upcoming}
+              weekLabel={strings.thisWeek}
+            />
           ))}
         </div>
       ) : (
@@ -74,13 +81,25 @@ export default function SermonList({
             <li key={s.id}>
               <Link
                 href={`/sermons/${s.id}`}
-                className="glass flex items-center justify-between gap-4 rounded-2xl p-4 transition-colors hover:bg-white/20"
+                className={`glass flex items-center justify-between gap-4 rounded-2xl p-4 transition-colors hover:bg-white/20 ${
+                  isCurrentWeek(s.date) ? "card-current" : ""
+                }`}
               >
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
                     <span className="text-xs font-semibold tracking-wide text-mint">
                       {s.state}
                     </span>
+                    {isCurrentWeek(s.date) && (
+                      <span className="badge-current rounded-full px-2 py-0.5 text-[11px] font-semibold">
+                        {strings.thisWeek}
+                      </span>
+                    )}
+                    {isUpcoming(s.date) && (
+                      <span className="badge-accent rounded-full px-2 py-0.5 text-[11px] font-semibold">
+                        {strings.upcoming}
+                      </span>
+                    )}
                     {s.language && (
                       <span className="rounded-full border border-white/25 px-2 py-0.5 text-[11px] font-medium text-mint-light">
                         {s.language}

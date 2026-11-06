@@ -73,3 +73,17 @@ body {
   border: 1px solid rgba(255, 92, 56, 0.45);
   color: #ff8266;
 }
+
+/* Lime status badge + edge glow for this week's khutbah */
+.badge-current {
+  background: rgba(216, 240, 85, 0.16);
+  border: 1px solid rgba(216, 240, 85, 0.5);
+  color: #e6f79a;
+}
+
+.card-current {
+  border-color: rgba(216, 240, 85, 0.55);
+  box-shadow:
+    0 0 0 1px rgba(216, 240, 85, 0.3),
+    0 12px 40px rgba(216, 240, 85, 0.12);
+}

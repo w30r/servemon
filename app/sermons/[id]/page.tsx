@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { getSermon, listSermons } from "@/lib/db";
 import Link from "next/link";
-import { formatDate, compareDatesDesc } from "@/lib/format";
+import { formatDate, compareDatesDesc, isCurrentWeek, isUpcoming } from "@/lib/format";
 import SermonViewer from "@/components/sermon-viewer";
 import ShareButton from "@/components/share-button";
 import { getLang } from "@/lib/i18n-server";
@@ -36,6 +36,16 @@ export default async function SermonPage({
       <div className="glass mt-6 rounded-3xl p-6 sm:p-8">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
+            {isCurrentWeek(sermon.date) && (
+              <span className="badge-current mr-2 inline-block rounded-full px-3 py-1 text-xs font-semibold tracking-wide">
+                {t(lang, "list.thisWeek")}
+              </span>
+            )}
+            {isUpcoming(sermon.date) && (
+              <span className="badge-accent mr-2 inline-block rounded-full px-3 py-1 text-xs font-semibold tracking-wide">
+                {t(lang, "list.upcoming")}
+              </span>
+            )}
             <span className="badge-accent inline-block rounded-full px-3 py-1 text-xs font-semibold tracking-wide">
               {sermon.language ?? "Rumi"}
             </span>

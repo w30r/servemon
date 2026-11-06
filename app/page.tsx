@@ -1,7 +1,7 @@
 import { listSermons } from "@/lib/db";
 import Link from "next/link";
 import SermonCard from "@/components/sermon-card";
-import { compareDatesDesc } from "@/lib/format";
+import { compareDatesDesc, isUpcoming } from "@/lib/format";
 import { getLang } from "@/lib/i18n-server";
 import { t } from "@/lib/i18n";
 
@@ -11,7 +11,10 @@ export default async function Home() {
   const lang = await getLang();
   const sermons = listSermons();
 
+  // Some authorities publish the whole year ahead (Johor), so exclude future
+  // Fridays here — otherwise the latest section is always them.
   const latest = [...sermons]
+    .filter((s) => !isUpcoming(s.date))
     .sort((a, b) => compareDatesDesc(a.date, b.date))
     .slice(0, 6);
 
@@ -63,7 +66,11 @@ export default async function Home() {
         ) : (
           <div className="mt-6 grid gap-4 pb-8 sm:grid-cols-2 lg:grid-cols-3">
             {latest.map((s) => (
-              <SermonCard key={s.id} sermon={s} />
+              <SermonCard
+              key={s.id}
+              sermon={s}
+              weekLabel={t(lang, "list.thisWeek")}
+            />
             ))}
           </div>
         )}

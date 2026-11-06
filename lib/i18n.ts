@@ -40,6 +40,8 @@ const en: Dict = {
   "list.cards": "Cards",
   "list.list": "List",
   "list.empty": "No sermons found. Try different filters.",
+  "list.upcoming": "Upcoming",
+  "list.thisWeek": "This week",
   "viewer.noPdf":
     "No PDF available for preview. Use the download buttons above.",
   "notfound.title": "Not found",
@@ -104,6 +106,8 @@ const bm: Dict = {
   "list.cards": "Kad",
   "list.list": "Senarai",
   "list.empty": "Tiada khutbah ditemui. Cuba tapisan lain.",
+  "list.upcoming": "Akan datang",
+  "list.thisWeek": "Minggu ini",
   "viewer.noPdf":
     "Tiada PDF untuk pratonton. Guna butang muat turun di atas.",
   "notfound.title": "Tidak ditemui",
@@ -168,6 +172,8 @@ const ta: Dict = {
   "list.cards": "அட்டைகள்",
   "list.list": "பட்டியல்",
   "list.empty": "குத்பா எதுவும் இல்லை. வேறு வடிகட்டிகளை முயற்சிக்கவும்.",
+  "list.upcoming": "வரவிருக்கும்",
+  "list.thisWeek": "இந்த வாரம்",
   "viewer.noPdf":
     "முன்னோட்டத்திற்கு PDF இல்லை. மேலே உள்ள பதிவிறக்க பொத்தான்களைப் பயன்படுத்தவும்.",
   "notfound.title": "கண்டறியப்படவில்லை",
@@ -230,6 +236,8 @@ const zh: Dict = {
   "list.cards": "卡片",
   "list.list": "列表",
   "list.empty": "未找到讲道。请尝试其他筛选条件。",
+  "list.upcoming": "即将到来",
+  "list.thisWeek": "本周",
   "viewer.noPdf": "暂无 PDF 可预览。请使用上方下载按钮。",
   "notfound.title": "未找到",
   "notfound.body": "该讲道或页面不存在。",
