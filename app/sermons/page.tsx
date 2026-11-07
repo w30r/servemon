@@ -1,12 +1,45 @@
-import Link from "next/link";
 import SermonList from "@/components/sermon-list";
-import { listSermons } from "@/lib/db";
-import { compareDatesDesc } from "@/lib/format";
+import SermonFilters, {
+  type FilterState,
+  type SortOrder,
+} from "@/components/sermon-filters";
+import { listSermons, type DbSermon } from "@/lib/db";
+import { compareDatesDesc, dateSortValue } from "@/lib/format";
 import { MALAYSIAN_STATES } from "@/lib/types";
 import { getLang } from "@/lib/i18n-server";
 import { t } from "@/lib/i18n";
 
-type SearchParams = Promise<{ state?: string; q?: string }>;
+type SearchParams = Promise<{
+  state?: string;
+  states?: string;
+  q?: string;
+  from?: string;
+  to?: string;
+  lang?: string;
+  sort?: string;
+}>;
+
+const LANGS = ["jawi", "rumi", "english"] as const;
+
+function isISODate(value: string | undefined): value is string {
+  return !!value && /^\d{4}-\d{2}-\d{2}$/.test(value);
+}
+
+function matchesState(sermon: DbSermon, state: string): boolean {
+  if (sermon.state === state) return true;
+  if (!sermon.states) return false;
+  return sermon.states
+    .split(",")
+    .map((s) => s.trim())
+    .includes(state);
+}
+
+function hasLang(sermon: DbSermon, lang: string): boolean {
+  if (lang === "jawi") return !!sermon.pdf_jawi;
+  if (lang === "rumi") return !!sermon.pdf_rumi;
+  if (lang === "english") return !!sermon.pdf_english;
+  return false;
+}
 
 export default async function SermonsPage({
   searchParams,
@@ -14,29 +47,75 @@ export default async function SermonsPage({
   searchParams: SearchParams;
 }) {
   const lang = await getLang();
-  const { state = "", q = "" } = await searchParams;
+  const sp = await searchParams;
 
-  const query = q.toLowerCase();
+  const q = sp.q ?? "";
+  const statesParam = sp.states ?? sp.state ?? "";
+  const selectedStates = statesParam
+    .split(",")
+    .map((s) => s.trim())
+    .filter((s): s is string =>
+      (MALAYSIAN_STATES as readonly string[]).includes(s)
+    );
+  const from = isISODate(sp.from) ? sp.from : "";
+  const to = isISODate(sp.to) ? sp.to : "";
+  const selectedLangs = (sp.lang ?? "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter((s): s is (typeof LANGS)[number] =>
+      (LANGS as readonly string[]).includes(s)
+    );
+  const sort: SortOrder = sp.sort === "oldest" ? "oldest" : "newest";
+
+  const current: FilterState = {
+    states: selectedStates,
+    from,
+    to,
+    langs: selectedLangs,
+    sort,
+    q,
+  };
+
   const all = listSermons();
+  const query = q.toLowerCase();
 
-  const filtered = all
-    .filter((s) => {
-      if (state && !(s.state === state || (s.states && s.states.includes(state))))
-        return false;
-      if (query && !(s.title ?? "").toLowerCase().includes(query)) return false;
-      return true;
-    })
-    .sort((a, b) => compareDatesDesc(a.date, b.date));
+  const base = all.filter((s) => {
+    if (query && !(s.title ?? "").toLowerCase().includes(query)) return false;
+    const date = dateSortValue(s.date);
+    if (from && date < from) return false;
+    if (to && date > to) return false;
+    if (
+      selectedLangs.length &&
+      !selectedLangs.some((l) => hasLang(s, l))
+    )
+      return false;
+    return true;
+  });
 
-  function filterHref(next: { state?: string; q?: string }) {
-    const params = new URLSearchParams();
-    const s = next.state ?? state;
-    const nq = next.q ?? q;
-    if (s) params.set("state", s);
-    if (nq) params.set("q", nq);
-    const qs = params.toString();
-    return qs ? `/sermons?${qs}` : "/sermons";
+  const counts: Record<string, number> = {};
+  for (const st of MALAYSIAN_STATES) {
+    counts[st] = base.filter((s) => matchesState(s, st)).length;
   }
+
+  const filtered = (
+    selectedStates.length
+      ? base.filter((s) =>
+          selectedStates.some((st) => matchesState(s, st))
+        )
+      : base
+  ).sort((a, b) => {
+    const cmp = compareDatesDesc(a.date, b.date);
+    return sort === "oldest" ? -cmp : cmp;
+  });
+
+  const dateLabel =
+    from && to
+      ? `${from} – ${to}`
+      : from
+        ? `${t(lang, "filter.from")} ${from}`
+        : to
+          ? `${t(lang, "filter.to")} ${to}`
+          : "";
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-12">
@@ -44,64 +123,37 @@ export default async function SermonsPage({
         {t(lang, "browse.title")}
       </h1>
 
-      <form action="/sermons" method="GET" className="mt-6 flex gap-2">
-        {state && <input type="hidden" name="state" value={state} />}
-        <input
-          type="text"
-          name="q"
-          defaultValue={q}
-          placeholder={t(lang, "search.placeholder")}
-          className="glass w-full max-w-sm rounded-full px-5 py-2.5 text-sm text-white placeholder:text-mint/60 outline-none transition-colors focus:border-glow/50"
+      <div className="mt-6">
+        <SermonFilters
+          counts={counts}
+          current={current}
+          strings={{
+            searchPlaceholder: t(lang, "search.placeholder"),
+            searchButton: t(lang, "search.button"),
+            button: t(lang, "filter.button"),
+            state: t(lang, "filter.state"),
+            date: t(lang, "filter.date"),
+            language: t(lang, "filter.language"),
+            sort: t(lang, "filter.sort"),
+            apply: t(lang, "filter.apply"),
+            reset: t(lang, "filter.reset"),
+            allStates: t(lang, "filter.allStates"),
+            allTime: t(lang, "filter.allTime"),
+            thisWeek: t(lang, "filter.thisWeek"),
+            thisMonth: t(lang, "filter.thisMonth"),
+            last3Months: t(lang, "filter.last3Months"),
+            thisYear: t(lang, "filter.thisYear"),
+            custom: t(lang, "filter.custom"),
+            from: t(lang, "filter.from"),
+            to: t(lang, "filter.to"),
+            newest: t(lang, "filter.newest"),
+            oldest: t(lang, "filter.oldest"),
+            jawi: t(lang, "filter.jawi"),
+            rumi: t(lang, "filter.rumi"),
+            english: t(lang, "filter.english"),
+            clear: t(lang, "filter.clear"),
+          }}
         />
-        {q && (
-          <Link
-            href={filterHref({ q: "" })}
-            className="glass rounded-full px-4 py-2.5 text-sm font-semibold text-mint transition-colors hover:bg-white/20 hover:text-white"
-            aria-label="Clear search"
-          >
-            ×
-          </Link>
-        )}
-        <button
-          type="submit"
-          className="btn-gold rounded-full px-5 py-2.5 text-sm font-semibold"
-        >
-          {t(lang, "search.button")}
-        </button>
-      </form>
-
-      <div className="mt-5 flex flex-wrap gap-2">
-        <Link
-          href={filterHref({ state: "" })}
-          className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors ${
-            !state
-              ? "btn-gold border-transparent font-semibold"
-              : "border-white/20 bg-white/5 text-mint hover:border-white/40 hover:text-white"
-          }`}
-        >
-          {t(lang, "filter.all")}
-        </Link>
-        {MALAYSIAN_STATES.map((st) => {
-          const count = all.filter(
-            (s) => s.state === st || (s.states && s.states.includes(st)),
-          ).length;
-          return (
-            <Link
-              key={st}
-              href={filterHref({ state: st })}
-              className={`rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors ${
-                state === st
-                  ? "btn-gold border-transparent font-semibold"
-                  : "border-white/20 bg-white/5 text-mint hover:border-white/40 hover:text-white"
-              }`}
-            >
-              {st}
-              {count > 0 && (
-                <span className="ml-2 text-[11px] font-normal opacity-50">{count}</span>
-              )}
-            </Link>
-          );
-        })}
       </div>
 
       <SermonList
@@ -117,7 +169,12 @@ export default async function SermonsPage({
               n: String(filtered.length),
               s: filtered.length === 1 ? "" : "s",
             }),
-            state ? t(lang, "list.summaryState", { state }) : "",
+            selectedStates.length
+              ? t(lang, "list.summaryState", {
+                  state: selectedStates.join(", "),
+                })
+              : "",
+            dateLabel ? ` · ${dateLabel}` : "",
             q ? t(lang, "list.summaryQuery", { query: q }) : "",
           ]
             .filter(Boolean)

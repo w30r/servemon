@@ -4,6 +4,9 @@ import Link from "next/link";
 import { formatDate, compareDatesDesc, isCurrentWeek, isUpcoming } from "@/lib/format";
 import SermonViewer from "@/components/sermon-viewer";
 import ShareButton from "@/components/share-button";
+import StateFlag from "@/components/state-flag";
+import DownloadButton, { type DownloadFile } from "@/components/download-button";
+import { getSiteUrl } from "@/lib/site-url";
 import { getLang } from "@/lib/i18n-server";
 import { t } from "@/lib/i18n";
 
@@ -18,6 +21,29 @@ export default async function SermonPage({
   const { id } = await params;
   const sermon = getSermon(id);
   if (!sermon) notFound();
+
+  const siteUrl = await getSiteUrl();
+
+  const downloadFiles: DownloadFile[] = [
+    sermon.pdf_jawi
+      ? { lang: "jawi" as const, url: sermon.pdf_jawi }
+      : null,
+    sermon.pdf_rumi
+      ? { lang: "rumi" as const, url: sermon.pdf_rumi }
+      : null,
+    sermon.pdf_english
+      ? { lang: "english" as const, url: sermon.pdf_english }
+      : null,
+  ].filter((f): f is DownloadFile => f !== null);
+
+  const availableLanguages = [
+    sermon.pdf_jawi ? "Jawi" : null,
+    sermon.pdf_rumi ? "Rumi" : null,
+    sermon.pdf_english ? "English" : null,
+  ].filter(Boolean);
+  const languageLabel = availableLanguages.length
+    ? availableLanguages.join(" / ")
+    : "Rumi";
 
   const related = listSermons({ state: sermon.state })
     .filter((s) => s.id !== sermon.id)
@@ -47,9 +73,12 @@ export default async function SermonPage({
               </span>
             )}
             <span className="badge-accent inline-block rounded-full px-3 py-1 text-xs font-semibold tracking-wide">
-              {sermon.language ?? "Rumi"}
+              {languageLabel}
             </span>
-            <span className="ml-2 text-sm text-mint">{sermon.state}</span>
+            <span className="ml-2 inline-flex items-center gap-2 text-sm text-mint">
+              <StateFlag state={sermon.state} />
+              {sermon.state}
+            </span>
             <h1 className="mt-2 text-2xl font-bold tracking-tight sm:text-3xl">
               {sermon.title}
             </h1>
@@ -58,39 +87,29 @@ export default async function SermonPage({
             </p>
           </div>
           <div className="flex flex-wrap gap-3">
-            {sermon.pdf_jawi && (
-              <a
-                href={`${sermon.pdf_jawi}?download=1`}
-                download
-                className="glass rounded-full px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-white/20"
-              >
-                {t(lang, "detail.downloadJawi")}
-              </a>
-            )}
-            {sermon.pdf_rumi && (
-              <a
-                href={`${sermon.pdf_rumi}?download=1`}
-                download
-                className="btn-gold rounded-full px-5 py-2.5 text-sm font-semibold"
-              >
-                {t(lang, "detail.downloadRumi")}
-              </a>
-            )}
-            {sermon.pdf_english && (
-              <a
-                href={`${sermon.pdf_english}?download=1`}
-                download
-                className="glass rounded-full px-5 py-2.5 text-sm font-semibold transition-colors hover:bg-white/20"
-              >
-                {t(lang, "detail.downloadEnglish")}
-              </a>
-            )}
+            <DownloadButton
+              files={downloadFiles}
+              label={t(lang, "detail.download")}
+              title={t(lang, "detail.downloadTitle")}
+              hint={t(lang, "detail.downloadHint")}
+              closeLabel={t(lang, "detail.close")}
+              langLabels={{
+                jawi: t(lang, "detail.jawi"),
+                rumi: t(lang, "detail.rumi"),
+                english: t(lang, "detail.english"),
+              }}
+            />
           </div>
         </div>
         <div className="mt-4 border-t border-white/10 pt-4">
           <ShareButton
             title={sermon.title}
-            url={`https://khutbah.meorsyamil.com/sermons/${sermon.id}`}
+            url={`${siteUrl}/sermons/${sermon.id}`}
+            labels={{
+              whatsapp: t(lang, "share.whatsapp"),
+              copy: t(lang, "share.copy"),
+              copied: t(lang, "share.copied"),
+            }}
           />
         </div>
       </div>

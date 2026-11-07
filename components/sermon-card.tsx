@@ -1,4 +1,5 @@
 import Link from "next/link";
+import StateFlag from "./state-flag";
 import { formatDate, isCurrentWeek, isUpcoming } from "@/lib/format";
 
 type SermonCardData = {
@@ -29,7 +30,8 @@ export default function SermonCard({
       }`}
     >
       <div className="flex items-center justify-between gap-2">
-        <span className="text-xs font-semibold tracking-wide text-mint">
+        <span className="flex items-center gap-2 text-xs font-semibold tracking-wide text-mint">
+          <StateFlag state={sermon.state} />
           {sermon.state}
         </span>
         <span className="flex shrink-0 items-center gap-1.5">

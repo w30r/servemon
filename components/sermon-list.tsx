@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import SermonCard from "./sermon-card";
+import StateFlag from "./state-flag";
 import { formatDate, isCurrentWeek, isUpcoming } from "@/lib/format";
 import type { DbSermon } from "@/lib/db";
 
@@ -87,7 +88,8 @@ export default function SermonList({
               >
                 <div className="min-w-0">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="text-xs font-semibold tracking-wide text-mint">
+                    <span className="flex items-center gap-2 text-xs font-semibold tracking-wide text-mint">
+                      <StateFlag state={s.state} />
                       {s.state}
                     </span>
                     {isCurrentWeek(s.date) && (

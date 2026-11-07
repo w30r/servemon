@@ -2,6 +2,10 @@
 
 import { useState } from "react";
 
+type Lang = "jawi" | "rumi" | "english";
+
+const ORDER: Lang[] = ["rumi", "jawi", "english"];
+
 export default function SermonViewer({
   title,
   jawiUrl,
@@ -15,17 +19,22 @@ export default function SermonViewer({
   englishUrl: string | null;
   noPdfText?: string;
 }) {
-  const [lang, setLang] = useState<"jawi" | "rumi" | "english">("rumi");
-  const [zoom, setZoom] = useState(1);
-
-  const urls: Record<string, string | null> = {
+  const urls: Record<Lang, string | null> = {
     jawi: jawiUrl,
     rumi: rumiUrl,
     english: englishUrl,
   };
+
+  const fallback = ORDER.find((l) => urls[l]) ?? "rumi";
+  const [selected, setSelected] = useState<Lang>(fallback);
+  const [zoom, setZoom] = useState(1);
+
+  // Another sermon may not have the language currently selected, so fall back
+  // to the first available one instead of rendering an empty tab.
+  const lang = urls[selected] ? selected : fallback;
   const active = urls[lang];
 
-  const tabs: { key: "jawi" | "rumi" | "english"; label: string }[] = [
+  const tabs: { key: Lang; label: string }[] = [
     { key: "jawi", label: "Jawi" },
     { key: "rumi", label: "Rumi" },
     { key: "english", label: "English" },
@@ -41,7 +50,7 @@ export default function SermonViewer({
               <button
                 key={t.key}
                 disabled={disabled}
-                onClick={() => setLang(t.key)}
+                onClick={() => setSelected(t.key)}
                 className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-colors ${
                   lang === t.key
                     ? "btn-gold"
@@ -72,14 +81,6 @@ export default function SermonViewer({
             >
               +
             </button>
-            <a
-              href={`${active}?download=1`}
-              download
-              className="ml-1 rounded-full px-2.5 py-1 text-xs font-semibold text-mint transition-colors hover:text-white"
-              aria-label="Download PDF"
-            >
-              ↓
-            </a>
           </div>
         )}
       </div>
