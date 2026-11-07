@@ -42,8 +42,8 @@ export default function SermonViewer({
 
   return (
     <div className="glass mt-6 overflow-hidden rounded-3xl p-2 sm:p-3">
-      <div className="mb-2 flex items-center justify-between px-2">
-        <div className="flex gap-1.5">
+      <div className="mb-2 flex flex-wrap items-center justify-between gap-2 px-2">
+        <div className="flex flex-wrap gap-1.5">
           {tabs.map((t) => {
             const disabled = !urls[t.key];
             return (
@@ -95,7 +95,7 @@ export default function SermonViewer({
             }}
           >
             <iframe
-              src={active}
+              src={`${active}#view=FitH`}
               title={`${title} — ${lang}`}
               className="h-full w-full border-0"
             />

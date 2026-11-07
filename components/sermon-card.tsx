@@ -29,12 +29,12 @@ export default function SermonCard({
         current ? "card-current" : ""
       }`}
     >
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <span className="flex items-center gap-2 text-xs font-semibold tracking-wide text-mint">
           <StateFlag state={sermon.state} />
           {sermon.state}
         </span>
-        <span className="flex shrink-0 items-center gap-1.5">
+        <span className="flex flex-wrap items-center gap-1.5">
           {current && (
             <span className="badge-current rounded-full px-2.5 py-0.5 text-[11px] font-semibold">
               {weekLabel}
@@ -45,20 +45,19 @@ export default function SermonCard({
               {upcomingLabel}
             </span>
           )}
-          <span className="rounded-full border border-white/25 px-2.5 py-0.5 text-[11px] font-medium text-mint-light">
-            {sermon.language}
-          </span>
         </span>
       </div>
       <h3 className="mt-2.5 font-semibold leading-snug text-white group-hover:text-glow">
         {sermon.title}
       </h3>
-      <time
-        dateTime={sermon.date}
-        className="mt-auto pt-4 text-sm text-mint/80"
-      >
-        {formatDate(sermon.date)}
-      </time>
+      <div className="mt-auto flex flex-wrap items-center justify-between gap-x-3 gap-y-1 pt-4">
+        <time dateTime={sermon.date} className="text-sm text-mint/80">
+          {formatDate(sermon.date)}
+        </time>
+        <span className="rounded-full border border-white/20 px-2 py-0.5 text-[10px] font-medium text-mint-light">
+          {sermon.language}
+        </span>
+      </div>
     </Link>
   );
 }

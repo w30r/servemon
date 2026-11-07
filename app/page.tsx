@@ -107,16 +107,16 @@ export default async function Home() {
             <p className="mx-auto mt-5 max-w-xl text-lg text-mint lg:mx-0">
               {t(lang, "hero.subtitle")}
             </p>
-            <div className="mt-9 flex flex-wrap justify-center gap-4 lg:justify-start">
+            <div className="mx-auto mt-9 flex max-w-xs flex-col gap-3 sm:max-w-none sm:flex-row sm:justify-center sm:gap-4 lg:justify-start">
               <Link
                 href="/sermons"
-                className="btn-gold rounded-full px-7 py-3 font-semibold"
+                className="btn-gold rounded-full px-7 py-3 text-center font-semibold"
               >
                 {t(lang, "hero.browse")}
               </Link>
               <Link
                 href="/about"
-                className="glass rounded-full px-7 py-3 font-medium text-white transition-colors hover:bg-white/20"
+                className="glass rounded-full px-7 py-3 text-center font-medium text-white transition-colors hover:bg-white/20"
               >
                 {t(lang, "hero.learn")}
               </Link>

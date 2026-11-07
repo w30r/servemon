@@ -182,7 +182,7 @@ export default async function SermonPage({
               <li key={s.id}>
                 <Link
                   href={`/sermons/${s.id}`}
-                  className="glass flex justify-between gap-4 rounded-2xl p-4 text-sm font-medium transition-colors hover:bg-white/20"
+                  className="glass flex flex-col gap-1 rounded-2xl p-4 text-sm font-medium transition-colors hover:bg-white/20 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
                 >
                   <span>{s.title}</span>
                   <span className="shrink-0 text-mint/70">

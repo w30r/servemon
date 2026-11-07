@@ -164,6 +164,7 @@ export default async function SermonsPage({
           empty: t(lang, "list.empty"),
           upcoming: t(lang, "list.upcoming"),
           thisWeek: t(lang, "list.thisWeek"),
+          loadMore: t(lang, "list.loadMore"),
           summary: [
             t(lang, "list.summary", {
               n: String(filtered.length),

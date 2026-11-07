@@ -235,12 +235,11 @@ export default function SermonFilters({
 
   return (
     <div>
-      <div className="flex flex-wrap items-center gap-2">
-        <form
-          action="/sermons"
-          method="GET"
-          className="flex min-w-0 flex-1 flex-wrap items-center gap-2"
-        >
+      <form
+        action="/sermons"
+        method="GET"
+        className="flex flex-wrap items-center gap-2"
+      >
           {current.states.length > 0 && (
           <input type="hidden" name="states" value={current.states.join(",")} />
         )}
@@ -252,37 +251,38 @@ export default function SermonFilters({
         {current.sort !== "newest" && (
           <input type="hidden" name="sort" value={current.sort} />
         )}
-        <input
-          type="text"
-          name="q"
-          defaultValue={current.q}
-          placeholder={strings.searchPlaceholder}
-          className="glass min-w-0 flex-1 basis-48 rounded-full px-5 py-2.5 text-sm text-white placeholder:text-mint/60 outline-none transition-colors focus:border-glow/50"
-        />
-        {current.q && (
-          <Link
-            href={buildHref({ ...current, q: "" })}
-            className="glass rounded-full px-4 py-2.5 text-sm font-semibold text-mint transition-colors hover:bg-white/20 hover:text-white"
-            aria-label={strings.clear}
-          >
-            ×
-          </Link>
-        )}
+        <div className="relative w-full min-w-0 sm:flex-1">
+          <input
+            type="text"
+            name="q"
+            defaultValue={current.q}
+            placeholder={strings.searchPlaceholder}
+            className="glass w-full rounded-full px-5 py-2.5 pr-11 text-sm text-white placeholder:text-mint/60 outline-none transition-colors focus:border-glow/50"
+          />
+          {current.q && (
+            <Link
+              href={buildHref({ ...current, q: "" })}
+              className="absolute right-1.5 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-lg leading-none text-mint transition-colors hover:bg-white/10 hover:text-white"
+              aria-label={strings.clear}
+            >
+              ×
+            </Link>
+          )}
+        </div>
         <button
           type="submit"
-          className="btn-gold rounded-full px-5 py-2.5 text-sm font-semibold"
+          className="btn-gold flex-1 rounded-full px-5 py-2.5 text-sm font-semibold sm:flex-none"
         >
           {strings.searchButton}
         </button>
-        </form>
 
-        <div className="relative shrink-0" ref={panelRef}>
+        <div className="relative flex-1 sm:flex-none" ref={panelRef}>
           <button
             type="button"
             onClick={openPanel}
             aria-expanded={open}
             aria-haspopup="dialog"
-            className={`flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold transition-colors ${
+            className={`flex w-full items-center justify-center gap-2 rounded-full border px-5 py-2.5 text-sm font-semibold transition-colors sm:w-auto ${
               activeCount > 0
                 ? "border-glow/60 bg-glow/15 text-glow"
                 : "glass text-white hover:bg-white/20"
@@ -501,7 +501,7 @@ export default function SermonFilters({
             </>
           )}
         </div>
-      </div>
+      </form>
 
       {chips.length > 0 && (
         <div className="mt-3 flex flex-wrap items-center gap-2">

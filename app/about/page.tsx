@@ -114,10 +114,10 @@ export default async function About() {
           {[...SHIPPED_STATES, ...FEDERAL_TERRITORIES].map((state) => (
             <li
               key={state}
-              className="flex items-center gap-2 rounded-xl bg-white/5 px-3 py-2 text-sm text-mint-light"
+              className="flex items-center gap-2 rounded-xl bg-white/5 px-3 py-2 text-[13px] leading-tight text-mint-light sm:text-sm"
             >
               <StateFlag state={state} />
-              <span className="truncate">{state}</span>
+              <span className="min-w-0">{state}</span>
             </li>
           ))}
         </ul>

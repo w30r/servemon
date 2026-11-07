@@ -33,7 +33,7 @@ export default function LangToggle({ current }: { current: Lang }) {
         aria-haspopup="true"
         aria-expanded={open}
         aria-label="Switch language"
-        className="flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-2.5 py-1.5 text-xs font-semibold text-mint transition-colors hover:bg-white/15 hover:text-white sm:px-3 sm:py-2 sm:text-sm"
+        className="flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-2.5 py-2 text-xs font-semibold text-mint transition-colors hover:bg-white/15 hover:text-white sm:px-3 sm:py-2 sm:text-sm"
       >
         {active?.label}
         <svg

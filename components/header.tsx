@@ -35,19 +35,19 @@ export default function Header({ lang }: { lang: Lang }) {
             <nav className="flex shrink-0 items-center gap-0.5 text-xs font-medium text-mint sm:gap-2 sm:text-sm">
               <Link
                 href="/sermons"
-                className="whitespace-nowrap rounded-full px-2 py-1.5 transition-colors hover:bg-white/10 hover:text-white sm:px-4 sm:py-2"
+                className="whitespace-nowrap rounded-full px-2 py-2 transition-colors hover:bg-white/10 hover:text-white sm:px-4 sm:py-2"
               >
                 {t(lang, "nav.browse")}
               </Link>
               <Link
                 href="/roadmap"
-                className="whitespace-nowrap rounded-full px-2.5 py-1.5 transition-colors hover:bg-white/10 hover:text-white sm:px-4 sm:py-2"
+                className="whitespace-nowrap rounded-full px-2.5 py-2 transition-colors hover:bg-white/10 hover:text-white sm:px-4 sm:py-2"
               >
                 {t(lang, "nav.roadmap")}
               </Link>
               <Link
                 href="/about"
-                className="whitespace-nowrap rounded-full px-2.5 py-1.5 transition-colors hover:bg-white/10 hover:text-white sm:px-4 sm:py-2"
+                className="whitespace-nowrap rounded-full px-2.5 py-2 transition-colors hover:bg-white/10 hover:text-white sm:px-4 sm:py-2"
               >
                 {t(lang, "nav.about")}
               </Link>

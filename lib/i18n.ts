@@ -90,6 +90,7 @@ const en: Dict = {
   "list.empty": "No sermons found. Try different filters.",
   "list.upcoming": "Upcoming",
   "list.thisWeek": "This week",
+  "list.loadMore": "Show {n} more",
   "viewer.noPdf":
     "No PDF available for preview. Use the download buttons above.",
   "summary.title": "AI summary",
@@ -201,6 +202,7 @@ const bm: Dict = {
   "list.empty": "Tiada khutbah ditemui. Cuba tapisan lain.",
   "list.upcoming": "Akan datang",
   "list.thisWeek": "Minggu ini",
+  "list.loadMore": "Tunjuk {n} lagi",
   "viewer.noPdf":
     "Tiada PDF untuk pratonton. Guna butang muat turun di atas.",
   "summary.title": "Ringkasan AI",
@@ -312,6 +314,7 @@ const ta: Dict = {
   "list.empty": "குத்பா எதுவும் இல்லை. வேறு வடிகட்டிகளை முயற்சிக்கவும்.",
   "list.upcoming": "வரவிருக்கும்",
   "list.thisWeek": "இந்த வாரம்",
+  "list.loadMore": "மேலும் {n} காட்டு",
   "viewer.noPdf":
     "முன்னோட்டத்திற்கு PDF இல்லை. மேலே உள்ள பதிவிறக்க பொத்தான்களைப் பயன்படுத்தவும்.",
   "summary.title": "AI சுருக்கம்",
@@ -420,6 +423,7 @@ const zh: Dict = {
   "list.empty": "未找到讲道。请尝试其他筛选条件。",
   "list.upcoming": "即将到来",
   "list.thisWeek": "本周",
+  "list.loadMore": "再显示 {n} 篇",
   "viewer.noPdf": "暂无 PDF 可预览。请使用上方下载按钮。",
   "summary.title": "AI 摘要",
   "summary.preview": "预览",
