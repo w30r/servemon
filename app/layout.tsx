@@ -25,10 +25,6 @@ export async function generateMetadata(): Promise<Metadata> {
       template: "%s — Servemon",
     },
     description: t(lang, "meta.desc"),
-    icons: {
-      icon: "/logo.png",
-      apple: "/apple-touch-icon.png",
-    },
     openGraph: {
       title: "Servemon — Friday Sermon Archive",
       description: t(lang, "meta.desc"),

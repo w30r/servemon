@@ -33,7 +33,7 @@ export default function LangToggle({ current }: { current: Lang }) {
         aria-haspopup="true"
         aria-expanded={open}
         aria-label="Switch language"
-        className="glass flex items-center gap-1 rounded-full px-2.5 py-1.5 text-xs font-semibold text-mint transition-colors hover:text-white sm:px-3 sm:py-2 sm:text-sm"
+        className="flex items-center gap-1 rounded-full border border-white/20 bg-white/10 px-2.5 py-1.5 text-xs font-semibold text-mint transition-colors hover:bg-white/15 hover:text-white sm:px-3 sm:py-2 sm:text-sm"
       >
         {active?.label}
         <svg
@@ -49,7 +49,7 @@ export default function LangToggle({ current }: { current: Lang }) {
         </svg>
       </button>
       {open && (
-        <div className="glass absolute right-0 top-full z-50 mt-2 w-36 rounded-2xl p-1.5">
+        <div className="absolute right-0 top-full z-50 mt-2 w-36 rounded-2xl border border-white/20 bg-[#0d3a38]/95 p-1.5 shadow-xl shadow-black/20 backdrop-blur-sm">
           {LANGS.map((l) => (
             <button
               key={l.code}

@@ -24,6 +24,21 @@ const en: Dict = {
     "A growing archive of khutbah PDFs from every state. Find, read and download — past and present.",
   "hero.browse": "Browse sermons",
   "hero.learn": "Learn more",
+  "home.ai.badge": "AI summaries",
+  "home.ai.title": "The khutbah, in 30 seconds",
+  "home.ai.body":
+    "Every sermon can be summarised on demand — a short TL;DR, the key points, and each dalil quoted word for word. Written in Malay, then translated to English, Chinese or Tamil when you need it.",
+  "home.ai.point1Title": "TL;DR + key points",
+  "home.ai.point1Body":
+    "The argument of the khutbah, condensed into something you can read before the next Friday.",
+  "home.ai.point2Title": "Dalils stay verbatim",
+  "home.ai.point2Body":
+    "Arabic, translation and source are checked against the PDF, never paraphrased.",
+  "home.ai.point3Title": "Your PDF never leaves the server",
+  "home.ai.point3Body":
+    "Only extracted text is sent for summarising, and each summary is cached after it is written once.",
+  "home.ai.cta": "Try it on this week's khutbah",
+  "home.ai.ctaAll": "Browse sermons",
   "latest.title": "Latest sermons",
   "latest.viewall": "View all →",
   "browse.title": "Browse sermons",
@@ -101,29 +116,6 @@ const en: Dict = {
   "notfound.body": "Sermon or page does not exist.",
   "notfound.browse": "Browse sermons",
   "about.title": "About",
-  "about.intro1": "Hey! I’m Syamil, the dev behind Servemon.",
-  "about.intro2":
-    "So here’s the idea — every Friday, Muslims across Malaysia attend khutbah at their local mosques, but once it’s over, it’s gone. You can’t go back and revisit what was said, reflect on it, or share it with someone who missed it.",
-  "about.intro3":
-    "Servemon fixes that. It’s a searchable archive of Friday sermon (khutbah) PDFs — scraped from official religious authority websites and organised in one place, so you can read, study, and refer back to past sermons anytime.",
-  "about.whatTitle": "What’s here",
-  "about.whatBody":
-    "Every Friday, mosques across Malaysia receive official sermon texts from their state religious authorities. Servemon picks these up and puts them all in one searchable place. No more digging through government websites.",
-  "about.coverageTitle": "Current coverage",
-  "about.coverageSelangor":
-    "Selangor — from JAIS (Jabatan Agama Islam Selangor)",
-  "about.coverageFt":
-    "Kuala Lumpur, Putrajaya, Labuan — from JAKIM (Jabatan Kemajuan Islam Malaysia)",
-  "about.coverageMore":
-    "More states coming soon — working on expanding to cover the whole country.",
-  "about.sourcesTitle": "Sources",
-  "about.sourcesIntro":
-    "All sermon PDFs come straight from official government websites:",
-  "about.sourcesJais": "e-khutbah.jais.gov.my — Selangor",
-  "about.sourcesJakim": "www.jakim.gov.my — KL / Putrajaya / Labuan",
-  "about.ownershipTitle": "Ownership",
-  "about.ownershipBody":
-    "All sermon texts belong to their respective state religious councils and departments. Servemon just makes them easier to find. This archive exists purely for easy reference and study.",
   "meta.desc":
     "Archive of Friday sermon (khutbah) PDFs from across Malaysia. Find, read and download.",
 };
@@ -143,6 +135,21 @@ const bm: Dict = {
     "Arkib khutbah PDF yang semakin berkembang dari setiap negeri. Cari, baca dan muat turun — yang lalu dan kini.",
   "hero.browse": "Terokai khutbah",
   "hero.learn": "Ketahui lebih lanjut",
+  "home.ai.badge": "Ringkasan AI",
+  "home.ai.title": "Khutbah, dalam 30 saat",
+  "home.ai.body":
+    "Setiap khutbah boleh diringkaskan atas permintaan — TL;DR ringkas, poin utama, dan setiap dalil dipetik kata demi kata. Ditulis dalam Bahasa Melayu, kemudian diterjemah ke Bahasa Inggeris, Cina atau Tamil apabila diperlukan.",
+  "home.ai.point1Title": "TL;DR + poin utama",
+  "home.ai.point1Body":
+    "Hujah khutbah diringkaskan menjadi bacaan singkat sebelum Jumaat seterusnya.",
+  "home.ai.point2Title": "Dalil kekal asli",
+  "home.ai.point2Body":
+    "Teks Arab, terjemahan dan sumbernya disemak dengan PDF, bukan diolah semula.",
+  "home.ai.point3Title": "PDF anda tidak ke mana-mana",
+  "home.ai.point3Body":
+    "Hanya teks yang diekstrak dihantar untuk diringkaskan, dan setiap ringkasan disimpan cache selepas ditulis sekali.",
+  "home.ai.cta": "Cuba pada khutbah minggu ini",
+  "home.ai.ctaAll": "Terokai khutbah",
   "latest.title": "Khutbah terkini",
   "latest.viewall": "Lihat semua →",
   "browse.title": "Terokai khutbah",
@@ -220,29 +227,6 @@ const bm: Dict = {
   "notfound.body": "Khutbah atau halaman tidak wujud.",
   "notfound.browse": "Terokai khutbah",
   "about.title": "Tentang",
-  "about.intro1": "Hey! Aku Syamil, developer di belakang Servemon.",
-  "about.intro2":
-    "Idea dia macam ni — setiap Jumaat, umat Islam di seluruh Malaysia hadir khutbah di masjid setempat, tapi lepas selesai, ia hilang. Tak boleh balik semula untuk baca apa yang disampaikan, muhasabah, atau kongsikan dengan mereka yang terlepas.",
-  "about.intro3":
-    "Servemon selesaikan masalah tu. Ia arkib khutbah Jumaat (PDF) yang boleh dicari — diambil dari laman web rasmi pihak berkuasa agama dan disusun dalam satu tempat, supaya korang boleh baca, kaji, dan rujuk khutbah lalu bila-bila masa.",
-  "about.whatTitle": "Apa yang ada di sini",
-  "about.whatBody":
-    "Setiap Jumaat, masjid di seluruh Malaysia menerima teks khutbah rasmi daripada pihak berkuasa agama negeri masing-masing. Servemon kumpul semuanya dan letak dalam satu tempat yang boleh dicari. Tak payah susah-susah cari laman kerajaan lagi.",
-  "about.coverageTitle": "Liputan sekarang",
-  "about.coverageSelangor":
-    "Selangor — daripada JAIS (Jabatan Agama Islam Selangor)",
-  "about.coverageFt":
-    "Kuala Lumpur, Putrajaya, Labuan — daripada JAKIM (Jabatan Kemajuan Islam Malaysia)",
-  "about.coverageMore":
-    "Negeri lain akan menyusul — sedang usaha untuk liputan seluruh negara.",
-  "about.sourcesTitle": "Sumber",
-  "about.sourcesIntro":
-    "Semua PDF khutbah diambil terus dari laman web rasmi kerajaan:",
-  "about.sourcesJais": "e-khutbah.jais.gov.my — Selangor",
-  "about.sourcesJakim": "www.jakim.gov.my — KL / Putrajaya / Labuan",
-  "about.ownershipTitle": "Hak milik",
-  "about.ownershipBody":
-    "Semua teks khutbah adalah hak milik majlis dan jabatan agama negeri masing-masing. Servemon sekadar memudahkan carian. Arkib ini wujud semata-mata untuk rujukan dan pembelajaran.",
   "meta.desc":
     "Arkib PDF khutbah Jumaat dari seluruh Malaysia. Cari, baca dan muat turun.",
 };
@@ -262,6 +246,21 @@ const ta: Dict = {
     "ஒவ்வொரு மாநிலத்திலிருந்தும் வளர்ந்து வரும் குத்பா PDF காப்பகம். பழைய மற்றும் தற்போதைய — கண்டறியவும், படிக்கவும், பதிவிறக்கவும்.",
   "hero.browse": "குத்பாக்களை உலாவு",
   "hero.learn": "மேலும் அறிக",
+  "home.ai.badge": "AI சுருக்கங்கள்",
+  "home.ai.title": "30 வினாடிகளில் குத்பா",
+  "home.ai.body":
+    "ஒவ்வொரு உரையையும் தேவைக்கேற்ப சுருக்கலாம் — சுருக்கமான TL;DR, முக்கியக் கருத்துகள், மற்றும் ஒவ்வொரு தலீலும் வார்த்தைக்கு வார்த்தை மேற்கோளிடப்படும். மலாயில் எழுதப்பட்டு, தேவைப்படும்போது ஆங்கிலம், சீனம் அல்லது தமிழில் மொழிபெயர்க்கப்படுகிறது.",
+  "home.ai.point1Title": "TL;DR + முக்கியக் கருத்துகள்",
+  "home.ai.point1Body":
+    "உரையின் வாதம், அடுத்த வெள்ளிக்கிழமைக்கு முன் படிக்கக்கூடிய அளவில் சுருக்கப்படுகிறது.",
+  "home.ai.point2Title": "தலீல்கள் அப்படியே",
+  "home.ai.point2Body":
+    "அரபு உரை, மொழிபெயர்ப்பு மற்றும் மூலம் PDF-உடன் சரிபார்க்கப்படுகின்றன, மாற்றியமைக்கப்படுவதில்லை.",
+  "home.ai.point3Title": "உங்கள் PDF சர்வரை விட்டு வெளியேறாது",
+  "home.ai.point3Body":
+    "சுருக்கத்திற்காக பிரித்தெடுக்கப்பட்ட உரை மட்டுமே அனுப்பப்படுகிறது, ஒவ்வொரு சுருக்கமும் ஒருமுறை எழுதப்பட்ட பிறகு cache செய்யப்படுகிறது.",
+  "home.ai.cta": "இந்த வார உரையில் முயற்சிக்கவும்",
+  "home.ai.ctaAll": "உரைகளை உலாவு",
   "latest.title": "சமீபத்திய குத்பாக்கள்",
   "latest.viewall": "அனைத்தையும் காண்க →",
   "browse.title": "குத்பாக்களை உலாவு",
@@ -339,29 +338,6 @@ const ta: Dict = {
   "notfound.body": "குத்பா அல்லது பக்கம் இல்லை.",
   "notfound.browse": "குத்பாக்களை உலாவு",
   "about.title": "பற்றி",
-  "about.intro1": "வணக்கம்! நான் சியாமில், Servemon-இன் உருவாக்குனர்.",
-  "about.intro2":
-    "இந்த யோசனை இது — ஒவ்வொரு வெள்ளிக்கிழமையும் மலேசியாவின் முஸ்லிம்கள் தங்கள் உள்ளூர் பள்ளிவாசல்களில் குத்பா கேட்கிறார்கள், ஆனால் அது முடிந்ததும் போய்விடுகிறது. என்ன சொல்லப்பட்டது, அதை மீண்டும் படிக்கவோ, சிந்திக்கவோ, அல்லது தவறவிட்டவர்களுடன் பகிரவோ முடியாது.",
-  "about.intro3":
-    "Servemon அதைச் சரிசெய்கிறது. இது வெள்ளிக்கிழமை குத்பா PDFகளின் தேடக்கூடிய காப்பகம் — அதிகாரப்பூர்வ மத அதிகாரிகளின் இணையதளங்களிலிருந்து சேகரிக்கப்பட்டு, ஒரே இடத்தில் அமைக்கப்பட்டுள்ளது. பழைய குத்பாக்களை எப்போது வேண்டுமானாலும் படிக்கவும், பயிலவும், திரும்பிப் பார்க்கவும் முடியும்.",
-  "about.whatTitle": "இங்கே என்ன இருக்கிறது",
-  "about.whatBody":
-    "ஒவ்வொரு வெள்ளிக்கிழமையும் மலேசியா முழுவதிலும் உள்ள பள்ளிவாசல்கள் தங்கள் மாநில மத அதிகாரிகளிடமிருந்து அதிகாரப்பூர்வ குத்பா உரைகளைப் பெறுகின்றன. Servemon அவற்றைச் சேகரித்து ஒரே தேடக்கூடிய இடத்தில் வைக்கிறது. அரசாங்க இணையதளங்களில் தேடும் தொல்லை இல்லை.",
-  "about.coverageTitle": "தற்போதைய பரப்பளவு",
-  "about.coverageSelangor":
-    "சிலாங்கூர் — JAIS (ஜாபாத்தான் அகாமா இஸ்லாம் சிலாங்கூர்)",
-  "about.coverageFt":
-    "கோலாலம்பூர், புத்ராஜெயா, லாபுவான் — JAKIM (ஜாபாத்தான் கெமாஜுவான் இஸ்லாம் மலேசியா)",
-  "about.coverageMore":
-    "மேலும் மாநிலங்கள் விரைவில் — முழு நாட்டையும் உள்ளடக்க விரிவாக்கம் செய்து வருகிறோம்.",
-  "about.sourcesTitle": "ஆதாரங்கள்",
-  "about.sourcesIntro":
-    "அனைத்து குத்பா PDFகளும் அதிகாரப்பூர்வ அரசு இணையதளங்களிலிருந்து நேரடியாக எடுக்கப்படுகின்றன:",
-  "about.sourcesJais": "e-khutbah.jais.gov.my — சிலாங்கூர்",
-  "about.sourcesJakim": "www.jakim.gov.my — KL / புத்ராஜெயா / லாபுவான்",
-  "about.ownershipTitle": "உரிமை",
-  "about.ownershipBody":
-    "அனைத்து குத்பா உரைகளும் சம்பந்தப்பட்ட மாநில மத சபைகள் மற்றும் துறைகளுக்குச் சொந்தமானவை. Servemon அவற்றை எளிதாகக் கண்டறிய உதவுகிறது. இந்த காப்பகம் வெறுமனே எளிய குறிப்பு மற்றும் பயிற்சிக்காக உள்ளது.",
   "meta.desc":
     "மலேசியா முழுவதிலுமிருந்து வெள்ளிக்கிழமை குத்பா PDF காப்பகம். கண்டுபிடி, படிக்கவும், பதிவிறக்கவும்.",
 };
@@ -379,6 +355,20 @@ const zh: Dict = {
     "不断增长的各州 khutbah PDF 档案。查找、阅读和下载——过去与现在。",
   "hero.browse": "浏览讲道",
   "hero.learn": "了解更多",
+  "home.ai.badge": "AI 摘要",
+  "home.ai.title": "30 秒读懂主麻讲道",
+  "home.ai.body":
+    "每篇讲道都可按需生成摘要——简短 TL;DR、要点，以及逐字引用的每一个 dalil。以马来文撰写，需要时翻译成英文、中文或泰米尔文。",
+  "home.ai.point1Title": "TL;DR + 要点",
+  "home.ai.point1Body": "把讲道的论点浓缩成下一篇主麻前就能读完的内容。",
+  "home.ai.point2Title": "Dalil 保持原文",
+  "home.ai.point2Body":
+    "阿拉伯文、译文和出处都会与 PDF 核对，绝不改写。",
+  "home.ai.point3Title": "PDF 不会离开服务器",
+  "home.ai.point3Body":
+    "只会发送提取出的文本用于生成摘要，每个摘要生成一次后即被缓存。",
+  "home.ai.cta": "试试本周的讲道",
+  "home.ai.ctaAll": "浏览讲道",
   "latest.title": "最新讲道",
   "latest.viewall": "查看全部 →",
   "browse.title": "浏览讲道",
@@ -452,26 +442,6 @@ const zh: Dict = {
   "notfound.body": "该讲道或页面不存在。",
   "notfound.browse": "浏览讲道",
   "about.title": "关于",
-  "about.intro1": "你好！我是 Syamil，Servemon 的开发者。",
-  "about.intro2":
-    "这个想法很简单——每个星期五，马来西亚各地的穆斯林都会到当地清真寺听 khutbah（主麻讲道），但讲道一结束就没了。你无法回头重读、反思，或分享给错过的人。",
-  "about.intro3":
-    "Servemon 解决了这个问题。它是一个可搜索的 khutbah PDF 档案库——从官方宗教机构的网站抓取并集中整理，让你随时随地阅读、研习和回看过去的讲道。",
-  "about.whatTitle": "这里有什么",
-  "about.whatBody":
-    "每个星期五，马来西亚各地的清真寺都会收到州宗教机构发布的正式讲道文本。Servemon 将它们收集到一个可搜索的地方，不必再费劲翻找政府网站。",
-  "about.coverageTitle": "目前覆盖范围",
-  "about.coverageSelangor": "雪兰莪——来自 JAIS（雪兰莪伊斯兰宗教局）",
-  "about.coverageFt":
-    "吉隆坡、布城、纳闽——来自 JAKIM（马来西亚伊斯兰发展局）",
-  "about.coverageMore": "更多州份即将加入——正在扩展以覆盖全国。",
-  "about.sourcesTitle": "资料来源",
-  "about.sourcesIntro": "所有讲道 PDF 均直接来自官方政府网站：",
-  "about.sourcesJais": "e-khutbah.jais.gov.my——雪兰莪",
-  "about.sourcesJakim": "www.jakim.gov.my——吉隆坡 / 布城 / 纳闽",
-  "about.ownershipTitle": "所有权",
-  "about.ownershipBody":
-    "所有讲道文本均归各州宗教理事会和部门所有。Servemon 只是让它们更容易被找到。这个档案库纯粹为了方便参考与学习。",
   "meta.desc": "马来西亚各地主麻讲道（khutbah）PDF 档案。查找、阅读和下载。",
 };
 

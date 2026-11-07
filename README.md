@@ -35,14 +35,16 @@ Two states (Melaka, Pahang) are still unreachable. See the Roadmap page for why 
 - On-demand AI summaries (Malay, then translated to EN/ZH/TA) with verified dalils
 - 4-language UI: Bahasa Melayu, English, 中文, தமிழ் (cookie-based toggle)
 - Public roadmap page with coverage, shipped history and TODO list
-- OpenGraph metadata + favicon
+- Split hero with a lazy-loaded three.js glass star (desktop only, reduced-motion fallback)
+- Liquid-glass sticky navbar (vendored, trimmed React Bits Glass Surface)
+- OpenGraph metadata, app icons generated from the Servemon mark
 - Automatic scraping via cron trigger
 
 ## Architecture
 
 ```
 app/
-  page.tsx              Home — hero + latest sermons
+  page.tsx              Home — 3D hero, latest sermons, AI summary intro
   sermons/page.tsx      Browse — state filter + search + list/cards
   sermons/[id]/page.tsx Detail — PDF viewer + download + related
   about/page.tsx        About page (4 languages)
@@ -50,8 +52,10 @@ app/
   api/cron/run/         POST cron trigger (runs all scrapers)
   api/pdf/[...path]/    PDF streaming from local disk
 components/
-  header, footer, lang-toggle, sermon-card/list/viewer,
-  share-button, back-to-top, skeleton
+  header, footer, lang-toggle, hero-visual, sermon-card/list/viewer,
+  sermon-summary, sermon-filters, state-flag, download-button, share-button,
+  back-to-top, skeleton
+  ui/glass-surface.tsx  Refractive SVG-filter glass (trimmed React Bits port)
   lib/
   db.ts                 SQLite schema + queries
   storage.ts            PDF path/URL resolution (traversal-safe)
@@ -60,6 +64,7 @@ components/
                         sabah.ts, sarawak.ts, terengganu.ts,
                         shared.ts, months.ts, http.ts
   i18n.ts / i18n-server.ts  UI translations
+  about.ts              About page content (4 languages)
   roadmap.ts            Roadmap content (4 languages)
   ai/                   deepseek.ts, prompts.ts, schema.ts, parse.ts
   summaries.ts          Summary generation + translation orchestration
