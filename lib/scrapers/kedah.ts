@@ -11,11 +11,7 @@ const CUTOFF = new Date();
 CUTOFF.setMonth(CUTOFF.getMonth() - SCRAPE_MONTHS);
 CUTOFF.setHours(0, 0, 0, 0);
 
-const MONTHS: Record<string, string> = {
-  jan: "01", feb: "02", mac: "03", apr: "04", mei: "05", jun: "06",
-  jul: "07", julai: "07", ogos: "08", sep: "09", sept: "09", okt: "10",
-  nov: "11", dis: "12", disember: "12",
-};
+import { MONTHS } from "./months";
 
 function parseDate(text: string): string | null {
   // "28 OGOS 2026/15 RABIUL AWAL 1448H"

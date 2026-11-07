@@ -96,7 +96,7 @@ export async function runJaisScraper(): Promise<{
   updated: number;
   skipped: number;
   errors: string[];
-}> {
+  }> {
   const errors: string[] = [];
   let added = 0;
   let updated = 0;

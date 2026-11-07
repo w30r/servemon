@@ -5,6 +5,14 @@ import { runJaisScraper } from "@/lib/scrapers/jais";
 import { runJakimScraper } from "@/lib/scrapers/jakim";
 import { runJohorScraper } from "@/lib/scrapers/johor";
 import { runKedahScraper } from "@/lib/scrapers/kedah";
+import { runKelantanScraper } from "@/lib/scrapers/kelantan";
+import { runNegeriSembilanScraper } from "@/lib/scrapers/negerisembilan";
+import { runPerakScraper } from "@/lib/scrapers/perak";
+import { runPerlisScraper } from "@/lib/scrapers/perlis";
+import { runPulauPinangScraper } from "@/lib/scrapers/pulaupinang";
+import { runSabahScraper } from "@/lib/scrapers/sabah";
+import { runSarawakScraper } from "@/lib/scrapers/sarawak";
+import { runTerengganuScraper } from "@/lib/scrapers/terengganu";
 
 export type ScraperResult = {
   added: number;
@@ -18,6 +26,14 @@ export type AllScrapersResult = {
   jakim: ScraperResult;
   johor: ScraperResult;
   kedah: ScraperResult;
+  kelantan: ScraperResult;
+  negerisembilan: ScraperResult;
+  perak: ScraperResult;
+  perlis: ScraperResult;
+  pulaupinang: ScraperResult;
+  sabah: ScraperResult;
+  sarawak: ScraperResult;
+  terengganu: ScraperResult;
 };
 
 const COOKIE_NAME = "devtool_auth";
@@ -64,11 +80,45 @@ export async function isAuthed(): Promise<boolean> {
 }
 
 export async function runAllScrapers(): Promise<AllScrapersResult> {
-  const [jais, jakim, johor, kedah] = await Promise.all([
+  const [
+    jais,
+    jakim,
+    johor,
+    kedah,
+    kelantan,
+    negerisembilan,
+    perak,
+    perlis,
+    pulaupinang,
+    sabah,
+    sarawak,
+    terengganu,
+  ] = await Promise.all([
     runJaisScraper(),
     runJakimScraper(),
     runJohorScraper(),
     runKedahScraper(),
+    runKelantanScraper(),
+    runNegeriSembilanScraper(),
+    runPerakScraper(),
+    runPerlisScraper(),
+    runPulauPinangScraper(),
+    runSabahScraper(),
+    runSarawakScraper(),
+    runTerengganuScraper(),
   ]);
-  return { jais, jakim, johor, kedah };
+  return {
+    jais,
+    jakim,
+    johor,
+    kedah,
+    kelantan,
+    negerisembilan,
+    perak,
+    perlis,
+    pulaupinang,
+    sabah,
+    sarawak,
+    terengganu,
+  };
 }

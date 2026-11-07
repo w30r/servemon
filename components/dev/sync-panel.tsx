@@ -34,7 +34,9 @@ export function SyncPanel() {
   return (
     <div className="mt-6 space-y-5">
       <p className="text-sm text-mint">
-        Scrapes all states (JAIS, JAKIM, Johor, Kedah) for new sermons. Takes a while.
+        Scrapes all states (JAIS, JAKIM, Johor, Kedah, Kelantan, Negeri
+        Sembilan, Perak, Perlis, Pulau Pinang, Sabah, Sarawak, Terengganu) for
+        new sermons. Takes a while.
       </p>
 
       <button
@@ -67,6 +69,14 @@ export function SyncPanel() {
           {resultRow("jakim", state.result.jakim)}
           {resultRow("johor", state.result.johor)}
           {resultRow("kedah", state.result.kedah)}
+          {resultRow("kelantan", state.result.kelantan)}
+          {resultRow("negerisembilan", state.result.negerisembilan)}
+          {resultRow("perak", state.result.perak)}
+          {resultRow("perlis", state.result.perlis)}
+          {resultRow("pulaupinang", state.result.pulaupinang)}
+          {resultRow("sabah", state.result.sabah)}
+          {resultRow("sarawak", state.result.sarawak)}
+          {resultRow("terengganu", state.result.terengganu)}
         </div>
       )}
     </div>

@@ -3,6 +3,14 @@ import { runJaisScraper } from "@/lib/scrapers/jais";
 import { runJakimScraper } from "@/lib/scrapers/jakim";
 import { runJohorScraper } from "@/lib/scrapers/johor";
 import { runKedahScraper } from "@/lib/scrapers/kedah";
+import { runKelantanScraper } from "@/lib/scrapers/kelantan";
+import { runNegeriSembilanScraper } from "@/lib/scrapers/negerisembilan";
+import { runPerakScraper } from "@/lib/scrapers/perak";
+import { runPerlisScraper } from "@/lib/scrapers/perlis";
+import { runPulauPinangScraper } from "@/lib/scrapers/pulaupinang";
+import { runSabahScraper } from "@/lib/scrapers/sabah";
+import { runSarawakScraper } from "@/lib/scrapers/sarawak";
+import { runTerengganuScraper } from "@/lib/scrapers/terengganu";
 
 const CRON_SECRET = process.env.CRON_SECRET;
 
@@ -14,13 +22,47 @@ export const POST = async (req: Request) => {
   }
 
   try {
-    const [jais, jakim, johor, kedah] = await Promise.all([
+    const [
+      jais,
+      jakim,
+      johor,
+      kedah,
+      kelantan,
+      negerisembilan,
+      perak,
+      perlis,
+      pulaupinang,
+      sabah,
+      sarawak,
+      terengganu,
+    ] = await Promise.all([
       runJaisScraper(),
       runJakimScraper(),
       runJohorScraper(),
       runKedahScraper(),
+      runKelantanScraper(),
+      runNegeriSembilanScraper(),
+      runPerakScraper(),
+      runPerlisScraper(),
+      runPulauPinangScraper(),
+      runSabahScraper(),
+      runSarawakScraper(),
+      runTerengganuScraper(),
     ]);
-    return NextResponse.json({ jais, jakim, johor, kedah });
+    return NextResponse.json({
+      jais,
+      jakim,
+      johor,
+      kedah,
+      kelantan,
+      negerisembilan,
+      perak,
+      perlis,
+      pulaupinang,
+      sabah,
+      sarawak,
+      terengganu,
+    });
   } catch (e) {
     console.error("Cron job error:", e);
     return NextResponse.json(

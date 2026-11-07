@@ -46,6 +46,8 @@ export function readPdf(segments: string[]): Buffer | null {
 export async function downloadPdf(url: string, destPath: string): Promise<boolean> {
   const buffer = await fetchBuffer(url);
   if (!buffer) return false;
+  // Reject HTML error pages / NAS share pages masquerading as a file.
+  if (!buffer.subarray(0, 1024).toString("latin1").includes("%PDF-")) return false;
   const dir = path.dirname(destPath);
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
   writeFileSync(destPath, buffer);

@@ -7,6 +7,14 @@ Currently covering:
 - **Kuala Lumpur, Putrajaya, Labuan** — JAKIM (Jabatan Kemajuan Islam Malaysia)
 - **Johor** — JAINJ (Jabatan Agama Islam Negeri Johor, Jawi only)
 - **Kedah** — JHEAIK (Jabatan Hal Ehwal Agama Islam Negeri Kedah, Jawi + Rumi)
+- **Kelantan** — MAIK (Teks Khutbah, via masjid.e-maik.my)
+- **Negeri Sembilan** — JHEAINS (Rumi)
+- **Perak** — JAIPk (Jawi + Rumi)
+- **Perlis** — MAIPs (Rumi)
+- **Pulau Pinang** — JHEAIPP (Jawi + Rumi)
+- **Sabah** — JHEAINS Sabah (Rumi)
+- **Sarawak** — MIS (latest week only)
+- **Terengganu** — JHEAT (Jawi + Rumi)
 
 More states coming soon.
 
@@ -45,7 +53,10 @@ components/
   lib/
   db.ts                 SQLite schema + queries
   storage.ts            PDF path/URL resolution (traversal-safe)
-  scrapers/             jais.ts, jakim.ts, johor.ts, kedah.ts, shared.ts, http.ts
+  scrapers/             jais.ts, jakim.ts, johor.ts, kedah.ts, kelantan.ts,
+                        negerisembilan.ts, perak.ts, perlis.ts, pulaupinang.ts,
+                        sabah.ts, sarawak.ts, terengganu.ts,
+                        shared.ts, months.ts, http.ts
   i18n.ts / i18n-server.ts  UI translations
 scripts/scrape.ts       Manual scrape runner
 ```
