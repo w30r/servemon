@@ -16,7 +16,7 @@ Currently covering:
 - **Sarawak** — MIS (latest week only)
 - **Terengganu** — JHEAT (Jawi + Rumi)
 
-More states coming soon.
+Two states (Melaka, Pahang) are still unreachable. See the Roadmap page for why and what is next.
 
 ## Tech Stack
 
@@ -28,12 +28,13 @@ More states coming soon.
 
 ## Features
 
-- Browse sermons by state with per-state counts and live search
+- Browse sermons with multi-state, date-range, language and sort filters + title search
 - Cards/list view toggle (persisted in localStorage)
 - Per-sermon PDF viewer with Jawi / Rumi / English tabs + zoom controls
-- Download individual PDFs (Jawi, Rumi, English)
-- WhatsApp share + copy-link on sermon detail pages
+- One download button with a language picker, plus WhatsApp share + copy-link
+- On-demand AI summaries (Malay, then translated to EN/ZH/TA) with verified dalils
 - 4-language UI: Bahasa Melayu, English, 中文, தமிழ் (cookie-based toggle)
+- Public roadmap page with coverage, shipped history and TODO list
 - OpenGraph metadata + favicon
 - Automatic scraping via cron trigger
 
@@ -45,6 +46,7 @@ app/
   sermons/page.tsx      Browse — state filter + search + list/cards
   sermons/[id]/page.tsx Detail — PDF viewer + download + related
   about/page.tsx        About page (4 languages)
+  roadmap/page.tsx      Roadmap — coverage, shipped history, TODO list
   api/cron/run/         POST cron trigger (runs all scrapers)
   api/pdf/[...path]/    PDF streaming from local disk
 components/
@@ -58,7 +60,13 @@ components/
                         sabah.ts, sarawak.ts, terengganu.ts,
                         shared.ts, months.ts, http.ts
   i18n.ts / i18n-server.ts  UI translations
+  roadmap.ts            Roadmap content (4 languages)
+  ai/                   deepseek.ts, prompts.ts, schema.ts, parse.ts
+  summaries.ts          Summary generation + translation orchestration
+  pdf-text.ts           unpdf text extraction
+  arabic.ts             Dalil normalization + verification
 scripts/scrape.ts       Manual scrape runner
+scripts/summarize.ts    Manual AI summary runner
 ```
 
 **Data flow:** Scrapers fetch listings from official sites → parse sermon metadata + download PDFs to local disk (`DATA_DIR`) → upsert into SQLite. PDFs are served from disk via `/api/pdf/[...path]`, not external URLs (government sites can be unreliable during Friday prayers).
@@ -78,6 +86,11 @@ Open http://localhost:3000.
 |---|---|---|
 | `DATA_DIR` | `~/.servemon/data` | Where PDFs + SQLite DB live |
 | `CRON_SECRET` | — | Required for `POST /api/cron/run` (matches `x-cron-secret` header) |
+| `NEXT_PUBLIC_SITE_URL` | request host | Optional canonical origin for share links |
+| `DEEPSEEK_API_KEY` | — | Required to generate AI summaries |
+| `SUMMARY_MODEL` | `deepseek-flash` | DeepSeek model for summaries/translations |
+| `DEEPSEEK_BASE_URL` | `https://api.deepseek.com` | OpenAI-compatible API base |
+| `SUMMARY_DAILY_LIMIT` | `60` | Max ready summary rows generated per UTC day (`0` = unlimited) |
 
 ## Scraping
 
@@ -98,6 +111,26 @@ The scrape is triggered externally (not via a scheduler inside the container). S
 ```
 
 `CRON_SECRET` must match the value set on the deployed app.
+
+## AI summaries
+
+Summaries are generated on demand from the Rumi PDF, not during scraping. The
+first click on a sermon calls DeepSeek, stores the result in SQLite, and later
+views are cached. Translations to EN/ZH/TA are generated from the Malay summary
+on first request.
+
+Jawi-only sermons are skipped because their PDFs have no usable text layer.
+
+Manual generation (outputs summary + token usage):
+
+```bash
+# one language (ms, en, zh, ta)
+npx tsx --env-file=.env.local scripts/summarize.ts <sermon-id> ms
+```
+
+Dalil Arabic is only kept when it can be verified against the extracted PDF
+text or its Malay translation; otherwise it is dropped rather than guessed.
+
 
 ## Docker
 

@@ -11,6 +11,7 @@ type Dict = Record<string, string>;
 
 const en: Dict = {
   "nav.browse": "Browse",
+  "nav.roadmap": "Roadmap",
   "nav.about": "About",
   "footer.tagline":
     "Servemon — archive of Friday sermon (khutbah) PDFs across Malaysia.",
@@ -76,6 +77,26 @@ const en: Dict = {
   "list.thisWeek": "This week",
   "viewer.noPdf":
     "No PDF available for preview. Use the download buttons above.",
+  "summary.title": "AI summary",
+  "summary.preview": "Preview",
+  "summary.generate": "Generate AI summary",
+  "summary.generating": "Generating summary…",
+  "summary.retry": "Try again",
+  "summary.failed": "Could not generate the summary.",
+  "summary.translate": "Translate to {language}",
+  "summary.malayFallback":
+    "Not in your language? Translate it.",
+  "summary.unavailable": "No AI summary yet.",
+  "summary.langMs": "Malay",
+  "summary.langEn": "English",
+  "summary.langZh": "Chinese",
+  "summary.langTa": "Tamil",
+  "summary.points": "Key points",
+  "summary.dalils": "Dalil",
+  "summary.previewNote":
+    "Preview only — the real summary will be generated from the sermon PDF.",
+  "summary.disclaimer":
+    "AI-generated summaries may contain errors. Always refer to the full sermon.",
   "notfound.title": "Not found",
   "notfound.body": "Sermon or page does not exist.",
   "notfound.browse": "Browse sermons",
@@ -109,6 +130,7 @@ const en: Dict = {
 
 const bm: Dict = {
   "nav.browse": "Terokai",
+  "nav.roadmap": "Peta Jalan",
   "nav.about": "Tentang",
   "footer.tagline":
     "Servemon — arkib PDF khutbah Jumaat di seluruh Malaysia.",
@@ -174,6 +196,26 @@ const bm: Dict = {
   "list.thisWeek": "Minggu ini",
   "viewer.noPdf":
     "Tiada PDF untuk pratonton. Guna butang muat turun di atas.",
+  "summary.title": "Ringkasan AI",
+  "summary.preview": "Pratonton",
+  "summary.generate": "Jana ringkasan AI",
+  "summary.generating": "Menjana ringkasan…",
+  "summary.retry": "Cuba lagi",
+  "summary.failed": "Ringkasan tidak dapat dijana.",
+  "summary.translate": "Terjemah ke {language}",
+  "summary.malayFallback":
+    "Bukan dalam bahasa anda? Terjemah sekarang.",
+  "summary.unavailable": "Belum ada ringkasan AI.",
+  "summary.langMs": "Bahasa Melayu",
+  "summary.langEn": "Bahasa Inggeris",
+  "summary.langZh": "Bahasa Cina",
+  "summary.langTa": "Bahasa Tamil",
+  "summary.points": "Isi utama",
+  "summary.dalils": "Dalil",
+  "summary.previewNote":
+    "Pratonton sahaja — ringkasan sebenar akan dijana daripada PDF khutbah.",
+  "summary.disclaimer":
+    "Ringkasan AI boleh mengandungi kesilapan. Sentiasa rujuk khutbah penuh.",
   "notfound.title": "Tidak ditemui",
   "notfound.body": "Khutbah atau halaman tidak wujud.",
   "notfound.browse": "Terokai khutbah",
@@ -207,6 +249,7 @@ const bm: Dict = {
 
 const ta: Dict = {
   "nav.browse": "உலாவு",
+  "nav.roadmap": "செயல்திட்டம்",
   "nav.about": "பற்றி",
   "footer.tagline":
     "Servemon — மலேசியா முழுவதிலுமிருந்து வெள்ளிக்கிழமை குத்பா PDF காப்பகம்.",
@@ -272,6 +315,26 @@ const ta: Dict = {
   "list.thisWeek": "இந்த வாரம்",
   "viewer.noPdf":
     "முன்னோட்டத்திற்கு PDF இல்லை. மேலே உள்ள பதிவிறக்க பொத்தான்களைப் பயன்படுத்தவும்.",
+  "summary.title": "AI சுருக்கம்",
+  "summary.preview": "முன்னோட்டம்",
+  "summary.generate": "AI சுருக்கத்தை உருவாக்கு",
+  "summary.generating": "சுருக்கம் உருவாக்கப்படுகிறது…",
+  "summary.retry": "மீண்டும் முயற்சி",
+  "summary.failed": "சுருக்கத்தை உருவாக்க முடியவில்லை.",
+  "summary.translate": "{language} மொழிக்கு மொழிபெயர்க்கவும்",
+  "summary.malayFallback":
+    "உங்கள் மொழியில் இல்லையா? மொழிபெயர்க்கவும்.",
+  "summary.unavailable": "இன்னும் AI சுருக்கம் இல்லை.",
+  "summary.langMs": "மலாய்",
+  "summary.langEn": "ஆங்கிலம்",
+  "summary.langZh": "சீனம்",
+  "summary.langTa": "தமிழ்",
+  "summary.points": "முக்கிய புள்ளிகள்",
+  "summary.dalils": "தலில்",
+  "summary.previewNote":
+    "முன்னோட்டம் மட்டும் — உண்மையான சுருக்கம் குத்பா PDF-இலிருந்து உருவாக்கப்படும்.",
+  "summary.disclaimer":
+    "AI சுருக்கங்களில் பிழைகள் இருக்கலாம். எப்போதும் முழு குத்பாவையும் பார்க்கவும்.",
   "notfound.title": "கண்டறியப்படவில்லை",
   "notfound.body": "குத்பா அல்லது பக்கம் இல்லை.",
   "notfound.browse": "குத்பாக்களை உலாவு",
@@ -305,6 +368,7 @@ const ta: Dict = {
 
 const zh: Dict = {
   "nav.browse": "浏览",
+  "nav.roadmap": "路线图",
   "nav.about": "关于",
   "footer.tagline": "Servemon — 马来西亚各地主麻讲道（khutbah）PDF 档案。",
   "footer.ownership": "讲道文本归各州宗教机构所有。",
@@ -367,6 +431,23 @@ const zh: Dict = {
   "list.upcoming": "即将到来",
   "list.thisWeek": "本周",
   "viewer.noPdf": "暂无 PDF 可预览。请使用上方下载按钮。",
+  "summary.title": "AI 摘要",
+  "summary.preview": "预览",
+  "summary.generate": "生成 AI 摘要",
+  "summary.generating": "正在生成摘要…",
+  "summary.retry": "重试",
+  "summary.failed": "无法生成摘要。",
+  "summary.translate": "翻译为{language}",
+  "summary.malayFallback": "不是您的语言？立即翻译。",
+  "summary.unavailable": "暂无 AI 摘要。",
+  "summary.langMs": "马来文",
+  "summary.langEn": "英文",
+  "summary.langZh": "中文",
+  "summary.langTa": "泰米尔文",
+  "summary.points": "要点",
+  "summary.dalils": "依据",
+  "summary.previewNote": "仅为预览——正式摘要将从讲道 PDF 生成。",
+  "summary.disclaimer": "AI 摘要可能包含错误。请始终参阅完整讲道。",
   "notfound.title": "未找到",
   "notfound.body": "该讲道或页面不存在。",
   "notfound.browse": "浏览讲道",

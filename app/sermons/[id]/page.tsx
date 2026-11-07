@@ -1,12 +1,17 @@
 import { notFound } from "next/navigation";
-import { getSermon, listSermons } from "@/lib/db";
+import { getSermon, getSermonSummary, listSermons } from "@/lib/db";
 import Link from "next/link";
 import { formatDate, compareDatesDesc, isCurrentWeek, isUpcoming } from "@/lib/format";
 import SermonViewer from "@/components/sermon-viewer";
 import ShareButton from "@/components/share-button";
 import StateFlag from "@/components/state-flag";
 import DownloadButton, { type DownloadFile } from "@/components/download-button";
+import SermonSummaryCard from "@/components/sermon-summary";
 import { getSiteUrl } from "@/lib/site-url";
+import {
+  parseStoredSummary,
+  type SummaryLang,
+} from "@/lib/summary";
 import { getLang } from "@/lib/i18n-server";
 import { t } from "@/lib/i18n";
 
@@ -44,6 +49,27 @@ export default async function SermonPage({
   const languageLabel = availableLanguages.length
     ? availableLanguages.join(" / ")
     : "Rumi";
+
+  const summaryLang: SummaryLang = lang === "bm" ? "ms" : lang;
+  const targetSummary = parseStoredSummary(
+    getSermonSummary(sermon.id, summaryLang)
+  );
+  const fallbackSummary =
+    summaryLang === "ms"
+      ? null
+      : parseStoredSummary(getSermonSummary(sermon.id, "ms"));
+  const initialSummary = targetSummary ?? fallbackSummary;
+  const showSummary = !!sermon.pdf_rumi || !!initialSummary;
+  const summaryLangName = t(
+    lang,
+    summaryLang === "ms"
+      ? "summary.langMs"
+      : summaryLang === "en"
+        ? "summary.langEn"
+        : summaryLang === "zh"
+          ? "summary.langZh"
+          : "summary.langTa"
+  );
 
   const related = listSermons({ state: sermon.state })
     .filter((s) => s.id !== sermon.id)
@@ -113,6 +139,30 @@ export default async function SermonPage({
           />
         </div>
       </div>
+
+      {showSummary && (
+        <SermonSummaryCard
+          sermonId={sermon.id}
+          targetLang={summaryLang}
+          initialSummary={initialSummary}
+          canGenerate={!!sermon.pdf_rumi}
+          strings={{
+            title: t(lang, "summary.title"),
+            points: t(lang, "summary.points"),
+            dalils: t(lang, "summary.dalils"),
+            disclaimer: t(lang, "summary.disclaimer"),
+            generate: t(lang, "summary.generate"),
+            generating: t(lang, "summary.generating"),
+            retry: t(lang, "summary.retry"),
+            failed: t(lang, "summary.failed"),
+            translate: t(lang, "summary.translate", {
+              language: summaryLangName,
+            }),
+            malayFallback: t(lang, "summary.malayFallback"),
+            unavailable: t(lang, "summary.unavailable"),
+          }}
+        />
+      )}
 
       <SermonViewer
         title={sermon.title}
