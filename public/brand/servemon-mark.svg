@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <title>Primary Mark</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <g id="Tongkat_mark" data-name="Tongkat mark">
+      <path id="Neck" d="M540 262 C552 270 558 288 558 310 L558 340 L522 340 L522 310 C522 288 528 270 540 262 Z" fill="#f7f2dd"/>
+      <ellipse id="Collar_upper" data-name="Collar upper" cx="540" cy="336" rx="39" ry="11" fill="#f7f2dd"/>
+      <ellipse id="Collar_lower" data-name="Collar lower" cx="540" cy="355" rx="32" ry="9" fill="#f7f2dd"/>
+      <path id="Upper_body" data-name="Upper body" d="M540 355 C578 360 596 400 594 455 C592 515 578 565 560 600 C550 620 546 636 546 655 L534 655 C534 636 530 620 520 600 C502 565 488 515 486 455 C484 400 502 360 540 355 Z" fill="#f7f2dd"/>
+      <ellipse id="Waist_disc" data-name="Waist disc" cx="540" cy="662" rx="28" ry="8" fill="#f7f2dd"/>
+      <path id="Foot" d="M540 650 C552 656 556 675 558 700 C560 735 562 775 562 798 C562 816 552 824 540 824 C528 824 518 816 518 798 C518 775 520 735 522 700 C524 675 528 656 540 650 Z" fill="#f7f2dd"/>
+      <ellipse id="Foot_disc_upper" data-name="Foot disc upper" cx="540" cy="791" rx="36" ry="11" fill="#f7f2dd"/>
+      <ellipse id="Foot_disc_lower" data-name="Foot disc lower" cx="540" cy="812" rx="28" ry="10" fill="#f7f2dd"/>
+      <line id="Collar_ring" data-name="Collar ring" x1="509" y1="356" x2="571" y2="356" fill="none" stroke="#d8f055" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10"/>
+      <line id="Waist_ring" data-name="Waist ring" x1="512" y1="662" x2="568" y2="662" fill="none" stroke="#d8f055" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10"/>
+      <line id="Foot_ring" data-name="Foot ring" x1="520" y1="792" x2="560" y2="792" fill="none" stroke="#d8f055" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10"/>
+      <circle id="Finial_bead" data-name="Finial bead" cx="540" cy="250" r="10" fill="#d8f055"/>
+      <path id="Crescent" d="M490 190 C490 162.386 512.386 140 540 140 C540.761 140 541.518 140.017 542.27 140.051 C529.592 147.024 521 160.508 521 176 C521 198.644 539.356 217 562 217 C571.066 217 579.444 214.058 586.232 209.076 C578.735 227.227 560.859 240 540 240 C512.386 240 490 217.614 490 190 Z" fill="#d8f055"/>
+      <polygon id="Star" points="610,130 617.053,150.292 638.532,150.729 621.413,163.708 627.634,184.271 610,172 592.366,184.271 598.587,163.708 581.468,150.729 602.947,150.292" fill="#d8f055"/>
+    </g>
+  </g>
+</svg>

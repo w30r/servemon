@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="154.056" height="700.246" viewBox="0 0 154.056 700.246">
+  <title>Servemon Logo</title>
+  <g id="Selection">
+    <g id="Tongkat_mark" data-name="Tongkat mark">
+      <path id="Neck" d="M54.637 133.188 C66.745 141.26 72.799 159.422 72.799 181.62 L72.799 211.89 L36.475 211.89 L36.475 181.62 C36.475 159.422 42.529 141.26 54.637 133.188 Z" fill="#f7f2dd"/>
+      <ellipse id="Collar_upper" data-name="Collar upper" cx="54.637" cy="207.854" rx="39.351" ry="11.099" fill="#f7f2dd"/>
+      <ellipse id="Collar_lower" data-name="Collar lower" cx="54.637" cy="227.025" rx="32.288" ry="9.081" fill="#f7f2dd"/>
+      <path id="Upper_body" data-name="Upper body" d="M54.637 227.025 C92.979 232.07 111.141 272.43 109.123 327.925 C107.105 388.465 92.979 438.915 74.817 474.23 C64.727 494.41 60.691 510.554 60.691 529.725 L48.583 529.725 C48.583 510.554 44.547 494.41 34.457 474.23 C16.295 438.915 2.169 388.465 0.151 327.925 C-1.867 272.43 16.295 232.07 54.637 227.025 Z" fill="#f7f2dd"/>
+      <ellipse id="Waist_disc" data-name="Waist disc" cx="54.637" cy="536.788" rx="28.252" ry="8.072" fill="#f7f2dd"/>
+      <path id="Foot" d="M54.637 524.68 C66.745 530.734 70.781 549.905 72.799 575.13 C74.817 610.445 76.835 650.805 76.835 674.012 C76.835 692.174 66.745 700.246 54.637 700.246 C42.529 700.246 32.439 692.174 32.439 674.012 C32.439 650.805 34.457 610.445 36.475 575.13 C38.493 549.905 42.529 530.734 54.637 524.68 Z" fill="#f7f2dd"/>
+      <ellipse id="Foot_disc_upper" data-name="Foot disc upper" cx="54.637" cy="666.949" rx="36.324" ry="11.099" fill="#f7f2dd"/>
+      <ellipse id="Foot_disc_lower" data-name="Foot disc lower" cx="54.637" cy="688.138" rx="28.252" ry="10.09" fill="#f7f2dd"/>
+      <line id="Collar_ring" data-name="Collar ring" x1="23.358" y1="228.034" x2="85.916" y2="228.034" fill="none" stroke="#f7f2dd" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10"/>
+      <line id="Waist_ring" data-name="Waist ring" x1="26.385" y1="536.788" x2="82.889" y2="536.788" fill="none" stroke="#f7f2dd" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10"/>
+      <line id="Foot_ring" data-name="Foot ring" x1="34.457" y1="667.958" x2="74.817" y2="667.958" fill="none" stroke="#f7f2dd" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10"/>
+      <circle id="Finial_bead" data-name="Finial bead" cx="54.637" cy="121.08" r="10.09" fill="#f7f2dd"/>
+      <path id="Crescent" d="M4.187 60.54 C4.187 32.677 26.775 10.09 54.637 10.09 C55.405 10.09 56.169 10.107 56.928 10.141 C44.135 17.177 35.466 30.783 35.466 46.414 C35.466 69.261 53.988 87.783 76.835 87.783 C85.982 87.783 94.436 84.814 101.286 79.788 C93.721 98.102 75.684 110.99 54.637 110.99 C26.775 110.99 4.187 88.403 4.187 60.54 Z" fill="#f7f2dd"/>
+      <polygon id="Star" points="125.267,0 132.384,20.474 154.056,20.916 136.783,34.012 143.06,54.759 125.267,42.378 107.475,54.759 113.752,34.012 96.479,20.916 118.15,20.474" fill="#f7f2dd"/>
+    </g>
+  </g>
+</svg>

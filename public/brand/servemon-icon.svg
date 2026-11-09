@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" viewBox="0 0 512 512">
+  <title>Favicon 512</title>
+  <g id="Artboard_Fill" data-name="Artboard Fill">
+    <rect x="0" y="0" width="512" height="512" fill="#0d3838"/>
+  </g>
+  <g id="Layer_1" data-name="Layer 1">
+    <rect id="Favicon_BG" data-name="Favicon BG" x="0" y="0" width="512" height="512" fill="#0d3838"/>
+    <g id="Tongkat_mark" data-name="Tongkat mark">
+      <path id="Neck" d="M242.257 122.786 C249.692 127.743 253.41 138.896 253.41 152.527 L253.41 171.115 L231.104 171.115 L231.104 152.527 C231.104 138.896 234.822 127.743 242.257 122.786 Z" fill="#f7f2dd"/>
+      <ellipse id="Collar_upper" data-name="Collar upper" cx="242.257" cy="168.636" rx="24.164" ry="6.816" fill="#f7f2dd"/>
+      <ellipse id="Collar_lower" data-name="Collar lower" cx="242.257" cy="180.409" rx="19.827" ry="5.576" fill="#f7f2dd"/>
+      <path id="Upper_body" data-name="Upper body" d="M242.257 180.409 C265.802 183.507 276.955 208.291 275.716 242.369 C274.476 279.545 265.802 310.525 254.649 332.211 C248.453 344.603 245.975 354.516 245.975 366.289 L238.54 366.289 C238.54 354.516 236.061 344.603 229.865 332.211 C218.712 310.525 210.038 279.545 208.799 242.369 C207.56 208.291 218.712 183.507 242.257 180.409 Z" fill="#f7f2dd"/>
+      <ellipse id="Waist_disc" data-name="Waist disc" cx="242.257" cy="370.626" rx="17.349" ry="4.957" fill="#f7f2dd"/>
+      <path id="Foot" d="M242.257 363.191 C249.692 366.908 252.171 378.681 253.41 394.171 C254.649 415.857 255.888 440.641 255.888 454.892 C255.888 466.044 249.692 471.001 242.257 471.001 C234.822 471.001 228.626 466.044 228.626 454.892 C228.626 440.641 229.865 415.857 231.104 394.171 C232.344 378.681 234.822 366.908 242.257 363.191 Z" fill="#f7f2dd"/>
+      <ellipse id="Foot_disc_upper" data-name="Foot disc upper" cx="242.257" cy="450.554" rx="22.306" ry="6.816" fill="#f7f2dd"/>
+      <ellipse id="Foot_disc_lower" data-name="Foot disc lower" cx="242.257" cy="463.566" rx="17.349" ry="6.196" fill="#f7f2dd"/>
+      <line id="Collar_ring" data-name="Collar ring" x1="223.05" y1="181.028" x2="261.465" y2="181.028" fill="none" stroke="#d8f055" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10"/>
+      <line id="Waist_ring" data-name="Waist ring" x1="224.908" y1="370.626" x2="259.606" y2="370.626" fill="none" stroke="#d8f055" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10"/>
+      <line id="Foot_ring" data-name="Foot ring" x1="229.865" y1="451.174" x2="254.649" y2="451.174" fill="none" stroke="#d8f055" stroke-width="6" stroke-linecap="round" stroke-miterlimit="10"/>
+      <circle id="Finial_bead" data-name="Finial bead" cx="242.257" cy="115.351" r="6.196" fill="#d8f055"/>
+      <path id="Crescent" d="M211.277 78.175 C211.277 61.065 225.147 47.195 242.257 47.195 C242.729 47.195 243.198 47.205 243.664 47.226 C235.808 51.547 230.485 59.902 230.485 69.5 C230.485 83.53 241.858 94.904 255.888 94.904 C261.505 94.904 266.697 93.081 270.903 89.994 C266.257 101.241 255.181 109.155 242.257 109.155 C225.147 109.155 211.277 95.285 211.277 78.175 Z" fill="#d8f055"/>
+      <polygon id="Star" points="285.629,40.999 290,53.572 303.308,53.843 292.701,61.884 296.555,74.625 285.629,67.022 274.704,74.625 278.558,61.884 267.951,53.843 281.259,53.572" fill="#d8f055"/>
+    </g>
+  </g>
+</svg>

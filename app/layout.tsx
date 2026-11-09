@@ -28,7 +28,7 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: "Servemon — Friday Sermon Archive",
       description: t(lang, "meta.desc"),
-      images: ["/logo.png"],
+      images: ["/brand/servemon-og.png"],
       type: "website",
     },
   };

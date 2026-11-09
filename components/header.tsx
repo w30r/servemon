@@ -22,15 +22,21 @@ export default function Header({ lang }: { lang: Lang }) {
           <div className="flex w-full items-center justify-between gap-2 sm:gap-3">
             <Link href="/" className="flex shrink-0 items-center gap-2">
               <Image
-                src="/logo2.png"
+                src="/brand/servemon-icon-compact.png"
                 alt="Servemon"
-                width={24}
-                height={24}
-                className="rounded-full sm:h-7 sm:w-7"
+                width={40}
+                height={40}
+                priority
+                className="h-9 w-9 sm:h-10 sm:w-10"
               />
-              <span className="hidden text-lg font-bold uppercase tracking-tight text-white sm:inline">
-                Servemon
-              </span>
+              <Image
+                src="/brand/servemon-wordmark.svg"
+                alt=""
+                width={154}
+                height={40}
+                priority
+                className="-ml-2.5 hidden h-5 w-auto sm:block"
+              />
             </Link>
             <nav className="flex shrink-0 items-center gap-0.5 text-xs font-medium text-mint sm:gap-2 sm:text-sm">
               <Link

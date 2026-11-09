@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" viewBox="0 0 512 512">
+  <title>App Icon Compact</title>
+  <g id="Layer_1" data-name="Layer 1">
+    <path id="Neck" d="M246 205 C256 212 260 226 260 240 L260 245 L232 245 L232 240 C232 226 236 212 246 205 Z" fill="#f7f2dd"/>
+    <ellipse id="Collar" cx="246" cy="245" rx="45" ry="12" fill="#f7f2dd"/>
+    <path id="Body" d="M246 245 C296 250 320 285 318 325 C316 365 300 388 286 402 L206 402 C192 388 176 365 174 325 C172 285 196 250 246 245 Z" fill="#f7f2dd"/>
+    <path id="Base" d="M246 394 C264 398 274 412 278 424 C282 440 294 450 306 458 C314 464 314 472 304 474 L188 474 C178 472 178 464 186 458 C198 450 210 440 214 424 C218 412 228 398 246 394 Z" fill="#f7f2dd"/>
+    <line id="Collar_ring" data-name="Collar ring" x1="204" y1="247" x2="288" y2="247" fill="none" stroke="#d8f055" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10"/>
+    <line id="Waist_ring" data-name="Waist ring" x1="218" y1="396" x2="274" y2="396" fill="none" stroke="#d8f055" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10"/>
+    <circle id="Bead" cx="246" cy="196" r="12" fill="#d8f055"/>
+    <path id="Crescent" d="M184 118 C184 83.758 211.758 56 246 56 C246.724 56 247.445 56.012 248.163 56.037 C232.579 64.505 222 81.017 222 100 C222 127.614 244.386 150 272 150 C284.545 150 296.01 145.38 304.788 137.749 C296.541 162.308 273.337 180 246 180 C211.758 180 184 152.242 184 118 Z" fill="#d8f055"/>
+    <polygon id="Star" points="338,52 346.817,75.865 372.238,76.875 352.266,92.635 359.16,117.125 338,103 316.84,117.125 323.734,92.635 303.762,76.875 329.183,75.865" fill="#d8f055"/>
+  </g>
+</svg>

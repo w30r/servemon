@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="198.353" height="422" viewBox="0 0 198.353 422">
+  <title>Servemon Logo</title>
+  <g id="Selection">
+    <path id="Neck" d="M72.115 153 C82.115 160 86.115 174 86.115 188 L86.115 193 L58.115 193 L58.115 188 C58.115 174 62.115 160 72.115 153 Z" fill="#f7f2dd"/>
+    <ellipse id="Collar" cx="72.115" cy="193" rx="45" ry="12" fill="#f7f2dd"/>
+    <path id="Body" d="M72.115 193 C122.115 198 146.115 233 144.115 273 C142.115 313 126.115 336 112.115 350 L32.115 350 C18.115 336 2.115 313 0.115 273 C-1.885 233 22.115 198 72.115 193 Z" fill="#f7f2dd"/>
+    <path id="Base" d="M72.115 342 C90.115 346 100.115 360 104.115 372 C108.115 388 120.115 398 132.115 406 C140.115 412 140.115 420 130.115 422 L14.115 422 C4.115 420 4.115 412 12.115 406 C24.115 398 36.115 388 40.115 372 C44.115 360 54.115 346 72.115 342 Z" fill="#f7f2dd"/>
+    <line id="Collar_ring" data-name="Collar ring" x1="30.115" y1="195" x2="114.115" y2="195" fill="none" stroke="#d8f055" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10"/>
+    <line id="Waist_ring" data-name="Waist ring" x1="44.115" y1="344" x2="100.115" y2="344" fill="none" stroke="#d8f055" stroke-width="7" stroke-linecap="round" stroke-miterlimit="10"/>
+    <circle id="Bead" cx="72.115" cy="144" r="12" fill="#d8f055"/>
+    <path id="Crescent" d="M10.115 66 C10.115 31.758 37.874 4 72.115 4 C72.839 4 73.56 4.012 74.278 4.037 C58.694 12.505 48.115 29.017 48.115 48 C48.115 75.614 70.501 98 98.115 98 C110.66 98 122.126 93.38 130.904 85.749 C122.657 110.308 99.452 128 72.115 128 C37.874 128 10.115 100.242 10.115 66 Z" fill="#d8f055"/>
+    <polygon id="Star" points="164.115,0 172.932,23.865 198.353,24.875 178.381,40.635 185.276,65.125 164.115,51 142.955,65.125 149.85,40.635 129.877,24.875 155.299,23.865" fill="#d8f055"/>
+  </g>
+</svg>
